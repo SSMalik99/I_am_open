@@ -5,6 +5,30 @@
     android:id="@+id/bottom_nav"
     app:startDestination="@id/homeFragment">
 
+    <action
+        android:id="@+id/action_productDetailFragment_to_productVideoGuideFragment"
+        app:destination="@id/productVideoGuideFragment" />
+    <fragment
+        android:id="@+id/productVideoGuideFragment"
+        android:name="com.example.i_am_open.ProductVideoGuideFragment"
+        android:label="fragment_product_video_guide"
+        tools:layout="@layout/fragment_product_video_guide" />
+    <action
+        android:id="@+id/action_productDetailFragment_to_productTutorialFragment"
+        app:destination="@id/productTutorialFragment" />
+    <fragment
+        android:id="@+id/productLegalFragment"
+        android:name="com.example.i_am_open.ProductLegalFragment"
+        android:label="fragment_product_legal"
+        tools:layout="@layout/fragment_product_legal" />
+    <fragment
+        android:id="@+id/productTutorialFragment"
+        android:name="com.example.i_am_open.ProductTutorialFragment"
+        android:label="fragment_product_tutorial"
+        tools:layout="@layout/fragment_product_tutorial" />
+    <action
+        android:id="@+id/action_productDetailFragment_to_productLegalFragment"
+        app:destination="@id/productLegalFragment" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.i_am_open.HomeFragment"
@@ -13,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_companyFragment"
             app:destination="@id/companyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/companyFragment"
@@ -34,5 +61,16 @@
         android:id="@+id/productDetailFragment"
         android:name="com.example.i_am_open.ProductDetailFragment"
         android:label="dd"
-        tools:layout="@layout/fragment_product_detail" />
+        tools:layout="@layout/fragment_product_detail" >
+        <action
+            android:id="@+id/action_productDetailFragment_to_productLegalFragment2"
+            app:destination="@id/productLegalFragment"
+            />
+        <action
+            android:id="@+id/action_productDetailFragment_to_productVideoGuideFragment2"
+            app:destination="@id/productVideoGuideFragment" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_productTutorialFragment2"
+            app:destination="@id/productTutorialFragment" />
+    </fragment>
 </navigation>
