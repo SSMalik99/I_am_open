@@ -7,4 +7,22 @@
     <string name="view_all">View all</string>
     <string name="companies">COMPANIES</string>
     <string name="recently_launched">RECENTLY LAUNCHED</string>
+
+
+    <string name="data_dog_title">
+    <b>What Are Logs In Datadog</b>
+</string>
+
+    <string name="data_dog_details">
+    <b>GENERAL OVERVIEW</b>
+    Some additional short product description goes here.\n    More details on product page.Some additional short product\n    description goes here. More details on product page.
+</string>
+    <string name="data_dog_dis">
+    <b>HOW TO FILTER LOGS?</b>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \n    eiusmod tempor incididunt ut labore et dolore magna aliqua. \n    Ut enim ad minim veniam, quis nostrud exercitation ullamco \n    laboris nisi ut aliquip ex ea commodo consequat.
+
+   Duis aute irure dolor in reprehenderit in voluptate velit esse \n   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat \n   cupidatat non proident, sunt in culpa qui officia deserunt mollit \n   anim id est laborum.
+</string>
+
+
 </resources>
