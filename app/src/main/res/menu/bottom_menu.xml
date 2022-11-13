@@ -4,24 +4,24 @@
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/home_unfilled"
-        android:title=""
+        android:title="Home"
       />
     <item
         android:id="@+id/companyFragment"
         android:enabled="true"
         android:icon="@drawable/company"
-        android:title=""
+        android:title="Companies"
 
         />
     <item
         android:id="@+id/favouriteFragment"
         android:enabled="true"
         android:icon="@drawable/favorite_border"
-        android:title=""
+        android:title="Favourite"
         />
     <item
         android:id="@+id/profileFragment"
         android:enabled="true"
         android:icon="@drawable/ic_outline_settings_24"
-        android:title=""/>
+        android:title="Setting"/>
 </menu>
