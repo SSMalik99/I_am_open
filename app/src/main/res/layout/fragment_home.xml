@@ -45,6 +45,49 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
+<!--    Horizontal View-->
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="16dp"
+        android:foregroundGravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+            
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:padding="8dp"
+                android:src="@drawable/company1"/>
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:padding="8dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/company2"/>
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:padding="8dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/company1"/>
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:padding="8dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/company2"/>
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="@string/recently_launched"
             android:textSize="18sp" />
     </LinearLayout>
@@ -61,7 +105,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:background="@drawable/textlines">
 
         <ImageView
             android:id="@+id/product1"
