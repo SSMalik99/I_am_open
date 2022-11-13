@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-
+    tools:context=".ProductTutorialFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+>
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="412dp"
         android:layout_height="194dp"
-        app:srcCompat="@drawable/data_dog"
+        android:src="@drawable/data_dog"
 
         tools:layout_editor_absoluteX="-2dp"
         tools:layout_editor_absoluteY="0dp"
@@ -48,9 +49,7 @@
         android:layout_height="96dp"
         android:text="@string/data_dog_details"
         android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -61,19 +60,6 @@
         android:textAlignment="gravity"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#42C2FF"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_menu"
-        app:itemRippleColor="@color/white"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+       />
+    </LinearLayout>
+</LinearLayout>

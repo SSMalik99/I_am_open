@@ -332,6 +332,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
+                android:id="@+id/item_3"
                 android:background="@drawable/textlines">
 
                 <ImageView
@@ -433,6 +434,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
+                android:id="@+id/item_4"
                 android:background="@drawable/textlines">
 
                 <ImageView
@@ -534,6 +536,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
+                android:id="@+id/item_5"
                 android:background="@drawable/textlines">
 
                 <ImageView
@@ -635,6 +638,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
+                android:id="@+id/item_6"
                 android:background="@drawable/textlines">
 
                 <ImageView
