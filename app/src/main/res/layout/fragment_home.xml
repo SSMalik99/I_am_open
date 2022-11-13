@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/view_all_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="41dp"
                 android:layout_gravity="center_vertical"
@@ -101,6 +101,13 @@
             android:text="@string/recently_launched"
             android:textSize="18sp" />
     </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+    </ListView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
