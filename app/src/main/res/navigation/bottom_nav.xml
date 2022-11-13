@@ -13,12 +13,19 @@
         <action
             android:id="@+id/action_homeFragment_to_companyFragment"
             app:destination="@id/companyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_companyDetailsFragment2"
+            app:destination="@id/companyDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/companyFragment"
         android:name="com.example.i_am_open.CompanyFragment"
         android:label="Companies"
-        tools:layout="@layout/fragment_company" />
+        tools:layout="@layout/fragment_company" >
+        <action
+            android:id="@+id/action_companyFragment_to_companyDetailsFragment"
+            app:destination="@id/companyDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
         android:name="com.example.i_am_open.FavouriteFragment"
@@ -35,4 +42,8 @@
         android:name="com.example.i_am_open.ProductDetailFragment"
         android:label="dd"
         tools:layout="@layout/fragment_product_detail" />
+    <fragment
+        android:id="@+id/companyDetailsFragment"
+        android:name="com.example.i_am_open.CompanyDetailsFragment"
+        android:label="CompanyDetailsFragment" />
 </navigation>

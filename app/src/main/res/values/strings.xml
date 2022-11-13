@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">i_am_open</string>
-
     <string name="company_name">Anorgeous</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="view_all">View all</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_description">
+        Product Description goes here. It will be populated from the database in the future
+    </string>
     <string name="companies">COMPANIES</string>
     <string name="recently_launched">RECENTLY LAUNCHED</string>
 
