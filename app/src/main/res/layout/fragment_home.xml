@@ -230,7 +230,7 @@
                     android:id="@+id/product2"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
-                    app:src="@drawable/adobe"
+                    android:src="@drawable/adobe"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
