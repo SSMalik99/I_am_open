@@ -29,4 +29,10 @@
         android:name="com.example.i_am_open.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.i_am_open.ProductDetailFragment"
+        android:label="dd"
+        tools:layout="@layout/fragment_product_detail" />
 </navigation>

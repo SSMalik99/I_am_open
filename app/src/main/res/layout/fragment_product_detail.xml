@@ -35,12 +35,48 @@
         android:layout_height="235dp"
         android:src="@drawable/gfo" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="fill_horizontal"
-        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center_horizontal"
+            android:background="@drawable/menu_background"
+            android:layout_marginHorizontal="0dp"
+            >
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/menu_background_button"
+                android:clickable="false"
+                android:text="Tutorials"
+                android:id="@+id/productTutorialButton"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/productVideoButton"
+                android:text="Video Guides"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="10dp"
+                android:text="Legal Precautions"
+                android:id="@+id/productLegalButton"
+                />
+
+        </LinearLayout>
+
+
 </LinearLayout>

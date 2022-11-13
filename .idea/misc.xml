@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.112" />
         <entry key="app/src/main/res/drawable/ic_outline_settings_24.xml" value="0.112" />
+        <entry key="app/src/main/res/drawable/menu_background_button.xml" value="0.112" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_company.xml" value="0.1" />
