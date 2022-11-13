@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_companyFragment"
             app:destination="@id/companyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/companyFragment"
@@ -61,7 +64,8 @@
         tools:layout="@layout/fragment_product_detail" >
         <action
             android:id="@+id/action_productDetailFragment_to_productLegalFragment2"
-            app:destination="@id/productLegalFragment" />
+            app:destination="@id/productLegalFragment"
+            />
         <action
             android:id="@+id/action_productDetailFragment_to_productVideoGuideFragment2"
             app:destination="@id/productVideoGuideFragment" />
