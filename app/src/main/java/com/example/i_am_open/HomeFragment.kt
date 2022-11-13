@@ -25,22 +25,22 @@ class HomeFragment : Fragment() {
 
         val companyIcon1 = view.findViewById<ImageView>(R.id.company1)
         companyIcon1.setOnClickListener{
-            view.findNavController().navigate(R.id.action_homeFragment_to_companyDetailsFragment2)
+            view.findNavController().navigate(R.id.action_homeFragment_to_companyDetailsFragment)
         }
 
         val companyIcon2 = view.findViewById<ImageView>(R.id.company2)
         companyIcon2.setOnClickListener{
-            view.findNavController().navigate(R.id.action_homeFragment_to_companyDetailsFragment2)
+            view.findNavController().navigate(R.id.action_homeFragment_to_companyDetailsFragment)
         }
 
         val companyIcon3 = view.findViewById<ImageView>(R.id.company3)
         companyIcon3.setOnClickListener{
-            view.findNavController().navigate(R.id.action_homeFragment_to_companyDetailsFragment2)
+            view.findNavController().navigate(R.id.action_homeFragment_to_companyDetailsFragment)
         }
 
         val companyIcon4 = view.findViewById<ImageView>(R.id.company4)
         companyIcon4.setOnClickListener{
-            view.findNavController().navigate(R.id.action_homeFragment_to_companyDetailsFragment2)
+            view.findNavController().navigate(R.id.action_homeFragment_to_companyDetailsFragment)
         }
 
         val item1 = view.findViewById<ConstraintLayout>(R.id.item_1)

@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_homeFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_companyDetailsFragment"
+            app:destination="@id/companyDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/companyFragment"
@@ -74,4 +77,8 @@
             android:id="@+id/action_productDetailFragment_to_productTutorialFragment2"
             app:destination="@id/productTutorialFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/companyDetailsFragment"
+        android:name="com.example.i_am_open.CompanyDetailsFragment"
+        android:label="CompanyDetailsFragment" />
 </navigation>
