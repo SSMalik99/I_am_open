@@ -10,14 +10,6 @@
     android:padding="16dp">
 
     <!--    Company Image    -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-    </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -43,7 +35,7 @@
             android:textStyle="bold"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/recently_launched"
+            android:text="Products"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -83,8 +75,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Samsung Memory Expander"
-                    android:textSize="14sp"
                     android:textAlignment="viewStart"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/product1"
@@ -94,19 +86,22 @@
                     android:id="@+id/description1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:text="Some additional short product description"
                     android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="@id/name_1"
-                    app:layout_constraintStart_toEndOf="@+id/name_1"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="176dp"
-                    android:layout_height="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/product1"
-                    app:layout_constraintTop_toBottomOf="@+id/name_1">
+                    app:layout_constraintTop_toBottomOf="@+id/name_1" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/product1"
+                    app:layout_constraintTop_toBottomOf="@+id/description1">
 
 
                     <TextView
@@ -200,9 +195,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Adobe Illustrator"
+                    android:textAlignment="viewStart"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textAlignment="textStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/product2"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -211,21 +206,23 @@
                     android:id="@+id/description2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginTop="68dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:text="Some additional short product description"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/product2"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/name_2" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="176dp"
-                    android:layout_height="32dp"
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/product2"
-                    app:layout_constraintTop_toBottomOf="@+id/name_2">
+                    app:layout_constraintTop_toBottomOf="@+id/description2">
 
 
                     <TextView
@@ -314,7 +311,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Canon Printer"
+                    android:text="Cannon Printer"
+                    android:textAlignment="viewStart"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -325,21 +323,22 @@
                     android:id="@+id/description3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginTop="68dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:text="Some additional short product description"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/product3"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/name_3" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="176dp"
-                    android:layout_height="32dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/product3"
-                    app:layout_constraintTop_toBottomOf="@+id/name_3">
+                    app:layout_constraintTop_toBottomOf="@+id/description3">
 
 
                     <TextView
@@ -428,7 +427,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Hoverboard"
+                    android:text="HoverBoard"
+                    android:textAlignment="viewStart"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -439,22 +439,22 @@
                     android:id="@+id/description4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginTop="68dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:text="Some additional short product description"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/product4"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/name_4" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="176dp"
-                    android:layout_height="32dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/product4"
-                    app:layout_constraintTop_toBottomOf="@+id/name_4">
-
+                    app:layout_constraintTop_toBottomOf="@+id/description4">
 
                     <TextView
                         android:id="@+id/request_4"
@@ -543,6 +543,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Drone"
+                    android:textAlignment="viewStart"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -553,21 +554,22 @@
                     android:id="@+id/description5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginTop="68dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:text="Some additional short product description"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/product5"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/name_5" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="176dp"
-                    android:layout_height="32dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/product5"
-                    app:layout_constraintTop_toBottomOf="@+id/name_5">
+                    app:layout_constraintTop_toBottomOf="@+id/description5">
 
 
                     <TextView
@@ -656,7 +658,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Meta VR set"
+                    android:text="Meta VR_Set"
+                    android:textAlignment="viewStart"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -667,21 +670,22 @@
                     android:id="@+id/description6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginTop="68dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
                     android:text="Some additional short product description"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/product6"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/name_6" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="176dp"
-                    android:layout_height="32dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/product6"
-                    app:layout_constraintTop_toBottomOf="@+id/name_6">
+                    app:layout_constraintTop_toBottomOf="@+id/description6">
 
 
                     <TextView
