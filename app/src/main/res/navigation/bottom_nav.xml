@@ -67,7 +67,7 @@
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.i_am_open.ProductDetailFragment"
-        android:label="dd"
+        android:label="Detail"
         tools:layout="@layout/fragment_product_detail" >
         <action
             android:id="@+id/action_productDetailFragment_to_productLegalFragment2"
