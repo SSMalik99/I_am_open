@@ -11,7 +11,7 @@
     <fragment
         android:id="@+id/productVideoGuideFragment"
         android:name="com.example.i_am_open.ProductVideoGuideFragment"
-        android:label="fragment_product_video_guide"
+        android:label="Video Guides"
         tools:layout="@layout/fragment_product_video_guide" />
     <action
         android:id="@+id/action_productDetailFragment_to_productTutorialFragment"
@@ -19,12 +19,12 @@
     <fragment
         android:id="@+id/productLegalFragment"
         android:name="com.example.i_am_open.ProductLegalFragment"
-        android:label="fragment_product_legal"
+        android:label="Legal Precautions"
         tools:layout="@layout/fragment_product_legal" />
     <fragment
         android:id="@+id/productTutorialFragment"
         android:name="com.example.i_am_open.ProductTutorialFragment"
-        android:label="fragment_product_tutorial"
+        android:label="Tutorials"
         tools:layout="@layout/fragment_product_tutorial" />
     <action
         android:id="@+id/action_productDetailFragment_to_productLegalFragment"

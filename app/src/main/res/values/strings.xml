@@ -14,11 +14,11 @@
 </string>
 
     <string name="data_dog_details">
-    <b>GENERAL OVERVIEW</b>
+    <b>GENERAL OVERVIEW</b>\n
     Some additional short product description goes here.\n    More details on product page.Some additional short product\n    description goes here. More details on product page.
 </string>
     <string name="data_dog_dis">
-    <b>HOW TO FILTER LOGS?</b>
+    <b>HOW TO FILTER LOGS?</b>\n
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \n    eiusmod tempor incididunt ut labore et dolore magna aliqua. \n    Ut enim ad minim veniam, quis nostrud exercitation ullamco \n    laboris nisi ut aliquip ex ea commodo consequat.
 
    Duis aute irure dolor in reprehenderit in voluptate velit esse \n   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat \n   cupidatat non proident, sunt in culpa qui officia deserunt mollit \n   anim id est laborum.

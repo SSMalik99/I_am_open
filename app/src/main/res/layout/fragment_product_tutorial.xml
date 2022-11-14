@@ -8,48 +8,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="9dp"
+        android:paddingHorizontal="5dp"
 >
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="412dp"
-        android:layout_height="194dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:src="@drawable/data_dog"
-
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:ignore="MissingConstraints"
 
 
         />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="313dp"
-        android:layout_height="71dp"
-        android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:text="@string/data_dog_title"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="181dp"
-        tools:ignore="MissingConstraints" />
+        android:textSize="25dp"/>
 
     <View
         android:id="@+id/divider"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="244dp"
-        tools:ignore="MissingConstraints" />
+        />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="407dp"
-        android:layout_height="96dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/data_dog_details"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="20dp"
+        android:lineHeight="20dp"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -59,7 +53,8 @@
         android:text="@string/data_dog_dis"
         android:textAlignment="gravity"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="20dp"
+        android:lineHeight="20dp"
        />
     </LinearLayout>
 </LinearLayout>
