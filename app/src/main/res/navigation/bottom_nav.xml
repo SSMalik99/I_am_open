@@ -49,6 +49,9 @@
         android:name="com.example.i_am_open.CompanyFragment"
         android:label="Companies"
         tools:layout="@layout/fragment_company" >
+        <action
+            android:id="@+id/action_companyFragment_to_companyDetailsFragment2"
+            app:destination="@id/companyDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
