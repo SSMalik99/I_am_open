@@ -737,6 +737,13 @@
         </LinearLayout>
 
     </ScrollView>
+    
+    <LinearLayout
+        android:id="@+id/productList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" />
+
 
 </LinearLayout>
 
