@@ -116,7 +116,6 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/home_list_item"/>
 
-
 </LinearLayout>
 
 

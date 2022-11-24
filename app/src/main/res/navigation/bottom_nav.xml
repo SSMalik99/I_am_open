@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_companyFragment_to_companyDetailsFragment2"
             app:destination="@id/companyDetailsFragment" />
+        <action
+            android:id="@+id/action_companyFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"

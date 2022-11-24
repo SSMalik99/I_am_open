@@ -52,9 +52,7 @@ class HomeFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myContext = container?.context
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
