@@ -81,11 +81,7 @@ class HomeFragment : Fragment() {
         Log.i("database Info-----",databaseHelper.test())
 
         viewAllBtn.setOnClickListener {
-
-//            val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
-//            bottomNavigationView.selectedItemId = R.id.companyFragment
             view.findNavController().navigate(R.id.action_homeFragment_to_companyFragment)
-//            view.findNavController().navigate(R.id.action_homeFragment_to_companyFragment)
         }
 
         return view
