@@ -92,9 +92,10 @@ class HomeFragment : Fragment() {
         val listView = view.findViewById<ListView>(R.id.productListView)
         listView.adapter = activity?.let { HomeAdapter(it, productList) }
         listView.setOnItemClickListener(){adapterView, view, position, id ->
-            Toast.makeText(getActivity(), productIds[position].toString()+" "+productNames[position],
-                Toast.LENGTH_LONG).show();
-            listView.findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment)
+            val id = productIds[position]
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
+            listView.findNavController().navigate(action)
+
         }
     }
 
