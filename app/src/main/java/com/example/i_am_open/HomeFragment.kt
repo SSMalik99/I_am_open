@@ -1,8 +1,8 @@
 package com.example.i_am_open
 
 import android.content.Context
-import android.os.Binder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 
 class HomeFragment : Fragment() {
+
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        mContext = context
+//    }
+
     val productImages = arrayOf<Int>(
         R.drawable.product1,
         R.drawable.adobe,
@@ -22,6 +28,7 @@ class HomeFragment : Fragment() {
         R.drawable.hovernoard
     )
 
+    lateinit var databaseHelper : DatabaseHelper
     val productNames = arrayOf<String>(
         "Samsung Memory Expander",
         "Adobe Illustrator",
@@ -41,8 +48,11 @@ class HomeFragment : Fragment() {
 
     var productIds =  ArrayList<Int>()
 
+
+
     var productList = ArrayList<RecentlyViewedProduct>()
     var myContext: Context? = null
+
     fun populateProducts() {
         productList = arrayListOf<RecentlyViewedProduct>()
         productIds =  arrayListOf<Int>()
@@ -64,6 +74,11 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val viewAllBtn = view.findViewById<Button>(R.id.view_all_btn)
+
+
+        databaseHelper = DatabaseHelper(myContext!!)
+
+        Log.i("database Info-----",databaseHelper.test())
 
         viewAllBtn.setOnClickListener {
 
