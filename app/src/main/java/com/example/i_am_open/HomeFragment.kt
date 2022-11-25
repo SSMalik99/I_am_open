@@ -47,9 +47,6 @@ class HomeFragment : Fragment() {
     )
 
     var productIds =  ArrayList<Int>()
-
-
-
     var productList = ArrayList<RecentlyViewedProduct>()
     var myContext: Context? = null
 
@@ -75,9 +72,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val viewAllBtn = view.findViewById<Button>(R.id.view_all_btn)
 
-
         databaseHelper = DatabaseHelper(myContext!!)
-
         Log.i("database Info-----",databaseHelper.test())
 
         viewAllBtn.setOnClickListener {

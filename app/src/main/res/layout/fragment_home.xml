@@ -110,6 +110,7 @@
             android:textSize="18sp" />
     </LinearLayout>
 
+<!--    Product List -->
     <ListView
         android:id="@+id/productListView"
         android:layout_width="match_parent"

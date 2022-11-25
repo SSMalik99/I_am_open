@@ -22,6 +22,8 @@ class ProductDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_product_detail, container, false)
+
+        // Receive Product Id from home fragment
         val id = ProductDetailFragmentArgs.fromBundle(requireArguments()).id
         Toast.makeText(getActivity(), id.toString(),
             Toast.LENGTH_LONG).show();
