@@ -86,5 +86,9 @@
     <fragment
         android:id="@+id/companyDetailsFragment"
         android:name="com.example.i_am_open.CompanyDetailsFragment"
-        android:label="CompanyDetailsFragment" />
+        android:label="CompanyDetailsFragment" >
+        <action
+            android:id="@+id/action_companyDetailsFragment_to_companyFragment"
+            app:destination="@id/companyFragment" />
+    </fragment>
 </navigation>
