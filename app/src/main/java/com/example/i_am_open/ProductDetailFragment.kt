@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.Toolbar
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
@@ -20,6 +21,11 @@ class ProductDetailFragment : Fragment() {
     {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_product_detail, container, false)
+
+        // Receive Product Id from home fragment
+        val id = ProductDetailFragmentArgs.fromBundle(requireArguments()).id
+        Toast.makeText(getActivity(), id.toString(),
+            Toast.LENGTH_LONG).show();
 
         view.findViewById<TextView>(R.id.productVideoButton).setOnClickListener {
             view.findNavController().navigate(R.id.action_productDetailFragment_to_productVideoGuideFragment)

@@ -1,8 +1,8 @@
 package com.example.i_am_open
 
 import android.content.Context
-import android.os.Binder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 
 class HomeFragment : Fragment() {
+
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        mContext = context
+//    }
+
     val productImages = arrayOf<Int>(
         R.drawable.product1,
         R.drawable.adobe,
@@ -22,6 +28,7 @@ class HomeFragment : Fragment() {
         R.drawable.hovernoard
     )
 
+    lateinit var databaseHelper : DatabaseHelper
     val productNames = arrayOf<String>(
         "Samsung Memory Expander",
         "Adobe Illustrator",
@@ -40,9 +47,9 @@ class HomeFragment : Fragment() {
     )
 
     var productIds =  ArrayList<Int>()
-
     var productList = ArrayList<RecentlyViewedProduct>()
     var myContext: Context? = null
+
     fun populateProducts() {
         productList = arrayListOf<RecentlyViewedProduct>()
         productIds =  arrayListOf<Int>()
@@ -65,12 +72,13 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val viewAllBtn = view.findViewById<Button>(R.id.view_all_btn)
 
-        viewAllBtn.setOnClickListener {
+        databaseHelper = DatabaseHelper(myContext!!)
+        val companies: ArrayList<CompanyModel> = databaseHelper.allCompanies()
+//        val products: ArrayList
 
-//            val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
-//            bottomNavigationView.selectedItemId = R.id.companyFragment
+
+        viewAllBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_homeFragment_to_companyFragment)
-//            view.findNavController().navigate(R.id.action_homeFragment_to_companyFragment)
         }
 
         return view
@@ -81,9 +89,10 @@ class HomeFragment : Fragment() {
         val listView = view.findViewById<ListView>(R.id.productListView)
         listView.adapter = activity?.let { HomeAdapter(it, productList) }
         listView.setOnItemClickListener(){adapterView, view, position, id ->
-            Toast.makeText(getActivity(), productIds[position].toString()+" "+productNames[position],
-                Toast.LENGTH_LONG).show();
-            listView.findNavController().navigate(R.id.action_homeFragment_to_productDetailFragment)
+            val id = productIds[position]
+//            val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
+//            listView.findNavController().navigate(action)
+
         }
     }
 

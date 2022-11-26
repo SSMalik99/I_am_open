@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/company"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="16dp"
+        android:background="@drawable/textlines">
+        <LinearLayout
+            android:id="@+id/companyImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/company1"
+            android:orientation="vertical" />
+        <TextView
+            android:id="@+id/companyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company 1"
+            android:paddingLeft="8dp"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/companyDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is the description for company1"
+            android:paddingLeft="8dp"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+</LinearLayout>

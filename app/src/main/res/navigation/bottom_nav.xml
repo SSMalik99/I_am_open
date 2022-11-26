@@ -72,6 +72,10 @@
         android:name="com.example.i_am_open.ProductDetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1" />
         <action
             android:id="@+id/action_productDetailFragment_to_productLegalFragment2"
             app:destination="@id/productLegalFragment"
@@ -86,9 +90,10 @@
     <fragment
         android:id="@+id/companyDetailsFragment"
         android:name="com.example.i_am_open.CompanyDetailsFragment"
-        android:label="CompanyDetailsFragment" >
-        <action
-            android:id="@+id/action_companyDetailsFragment_to_companyFragment"
-            app:destination="@id/companyFragment" />
+        android:label="CompanyDetailsFragment">
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>
