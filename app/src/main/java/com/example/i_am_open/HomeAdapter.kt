@@ -27,4 +27,5 @@ class HomeAdapter(private val myContext: Context,
 
         return view
     }
+
 }

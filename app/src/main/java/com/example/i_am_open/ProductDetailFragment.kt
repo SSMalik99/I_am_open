@@ -1,5 +1,6 @@
 package com.example.i_am_open
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -12,28 +13,29 @@ import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import kotlin.properties.Delegates
 
 
 class ProductDetailFragment : Fragment() {
 
+    var productId : Int = 0
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        productId = arguments?.getInt("id")!!
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_product_detail, container, false)
 
-        // Receive Product Id from home fragment
-        val id = ProductDetailFragmentArgs.fromBundle(requireArguments()).id
-        Toast.makeText(getActivity(), id.toString(),
-            Toast.LENGTH_LONG).show();
+        Toast.makeText(this.activity, productId.toString(), Toast.LENGTH_LONG).show();
 
         view.findViewById<TextView>(R.id.productVideoButton).setOnClickListener {
             view.findNavController().navigate(R.id.action_productDetailFragment_to_productVideoGuideFragment)
         }
 
-//        view.findViewById<TextView>(R.id.productTutorialButton).setOnClickListener {
-//            view.findNavController().navigate(R.id.action_productDetailFragment_to_productTutorialFragment)
-//        }
         view.findViewById<TextView>(R.id.productLegalButton).setOnClickListener {
             view.findNavController().navigate(R.id.action_productDetailFragment_to_productLegalFragment)
         }

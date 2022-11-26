@@ -10,7 +10,9 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
 
@@ -86,13 +88,16 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         populateProducts()
+
         val listView = view.findViewById<ListView>(R.id.productListView)
         listView.adapter = activity?.let { HomeAdapter(it, productList) }
         listView.setOnItemClickListener(){adapterView, view, position, id ->
             val id = productIds[position]
 
-//            val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
-//            listView.findNavController().navigate(action)
+
+            val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
+//            view.performAccessibilityAction(R.id.action_homeFragment_to_productDetailFragment, id)
+            listView.findNavController().navigate(action)
 
         }
     }
