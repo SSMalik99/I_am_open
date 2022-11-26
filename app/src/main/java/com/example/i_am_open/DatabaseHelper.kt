@@ -73,91 +73,91 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         db?.execSQL("""insert into products values 
           (1, 
             "Amazon Dash Button", 
-            "https://unsplash.com/photos/Uwecr7Su3dU", 
+            "https://i.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI", 
             "Amazon Dash Button is basically a device that gets connected over internet Wi-Fi and makes sure that the user does not lack important household items like soft drinks, grocery material, medical and personal care, kids, and any pet items ever again.\n It allows the user to order products quickly and there is no need to recall the message again and it also helps to reduce the time frame for searching the required product by the user. This IoT product is developed for making the user's lifestyle simple and easy.", 
             11,1,1
             ), 
             (2, 
                 "August Smart Lock", 
-                "https://unsplash.com/photos/IJkSskfEqrM", 
+                "https://i.picsum.photos/id/619/2509/1673.jpg?hmac=Ya1R0tbWFKtwAl9bKFL7IIlx8YLn_JGYFTiXdINKRPY", 
                 "August Smart Lock allows the user to manage their doors from any location hassle-free. It helps the user to keep thieves away and family in your home. It allows the user to know about each person coming and going into your home, provides unlimited digital keys and no fear of stolen key, gives the status updates of your door as it is properly closed or not, provides a good auto-unlock feature and as soon as the user arrives near the door it opens automatically.", 
                 12,1,1
                 ),
             (3, 
                 "Canary", 
-                "image", 
+                "https://i.picsum.photos/id/819/3264/3264.jpg?hmac=1ZalXesmDNvJwkdpJ1VWdeyBrZT40CSEk3cZ_LDyQsI", 
                 "This all-in-one home security system captures video and audio and sends alerts to your smartphone. It automatically knows when you are home or away (no need to enter a security code), and you can also view the live video feed from your phone. Canary's smart alerts distinguish between people and motion and include an image thumbnail, so you know in an instant whether a family member, foe, or a four-legged friend is in your home.", 
                 13,4,2
             ),
             (4, 
                 "Chamberlain MyQ", 
-                "image", 
+                "https://i.picsum.photos/id/859/1919/1919.jpg?hmac=24AoHo7Jc5TRRRaJfWO0B4z2wW5Jl14r56rVKeMfpZI", 
                 "Chamberlain MyQ products allow you to control your existing garage door with your iPhone or Android device. Make your existing garage door opener smart in minutes with smart garage control. The smart garage control is simple to install and allows you to link your existing garage door opener to the myq app so you can control, secure, and monitor the garage from your smartphone. Once paired with the myq app, it offers more than the ability to simply open and close a garage door. Homeowners with smart garage control benefit from on-the-go management of daily activities, like never having to wonder if the garage door was left open, receiving real-time alerts when children arrive home from school, remotely letting in the dog walker or service person and now in-garage delivery to keep packages safe and secure.", 
                 22,11,2
             ),
             (5, 
                 "Ring Doorbell", 
-                "image", 
+                "https://i.picsum.photos/id/946/5000/3572.jpg?hmac=o__WbAcVSi9EvwRNEm2Z6vdOF_S5pMuW6L4zuXhsSvM", 
                 "The Ring Doorbell doubles as a door answering device and additional form of home security. With its built-in video camera, Ring senses and records motion near your door, allowing you to communicate with your visitor in real time or review the most important security footage later. It allows to receive real-time notifications on your phone and tablet, get real-time video and audio with the Live View button, control and customize important security settings, save, and share videos, photos with an optional Ring Protect Plan. Control everything with one simple app.", 
                 12,10,3
             ), 
             (6, 
-                "Ring Doorbell", 
-                "image", 
-                "The Ring Doorbell doubles as a door answering device and additional form of home security. With its built-in video camera, Ring senses and records motion near your door, allowing you to communicate with your visitor in real time or review the most important security footage later. It allows to receive real-time notifications on your phone and tablet, get real-time video and audio with the Live View button, control and customize important security settings, save, and share videos, photos with an optional Ring Protect Plan. Control everything with one simple app.", 
+                "Clog Doorbell", 
+                "https://i.picsum.photos/id/36/4179/2790.jpg?hmac=OCuYYm0PkDCMwxWhrtoSefG5UDir4O0XCcR2x-aSPjs", 
+                "The Clog Doorbell doubles as a door answering device and additional form of home security. With its built-in video camera, Ring senses and records motion near your door, allowing you to communicate with your visitor in real time or review the most important security footage later. It allows to receive real-time notifications on your phone and tablet, get real-time video and audio with the Live View button, control and customize important security settings, save, and share videos, photos with an optional Ring Protect Plan. Control everything with one simple app.", 
                 32,1,3
             ), 
             (7, 
                 "Freshteam", 
-                "image", 
+                "https://i.picsum.photos/id/48/5000/3333.jpg?hmac=y3_1VDNbhii0vM_FN6wxMlvK27vFefflbUSH06z98so", 
                 "Freshteam is the smart HR software for growing businesses. Freshteam helps attract and source top talent through various channels - a quickly customizable career site, integration with multiple free and premium job boards, and social media channels. Once the candidates are in, the recruiters can collaborate with the hiring managers to screen and interview them, share feedback, leave notes for each other, and finally, hire and roll out offers to the best candidates.  Freshteam also enables the HR team to onboard new hires even before day one - whether it’s getting forms filled, documents signed, or handing out handbooks, Freshteam can do it in a few clicks. The HR software also takes complete care of employee time off, employee and manager self-service for employees to raise requests, manager approval workflows, time off reports for teams and the whole organization that give a quick view into upcoming leaves, absenteeism trends, and more.", 
                 112,41,4
             ),
             (8, 
                 "Hiver", 
-                "image", 
+                "https://i.picsum.photos/id/60/1920/1200.jpg?hmac=fAMNjl4E_sG_WNUjdU39Kald5QAHQMh-_-TsIbbeDNI", 
                 "Hiver is a multi-channel helpdesk built for Google Workspace. It helps teams deliver fast and empathetic customer service, right from the tool they are already familiar with - Gmail. This means they can assign, track, and collaborate on customer emails, as well as run the most advanced analytics and automations from the Gmail interface, without sacrificing any time on learning new software or switching tabs. Teams can also leverage Hiver's Live Chat to engage with their website visitors, and provide real-time support - again, from within Gmail. Hiver helps over 1500 companies - ranging from new-age unicorns to traditional enterprises - deliver a better experience to their customers. Companies like Flexport, Pluralsight, Harvard University, Appsflyer, Oxford Business Group, and Upwork, among others, are powered by Hiver.", 
                 22,10,4
             ), 
             (9, 
                 "Tidio", 
-                "image", 
+                "https://i.picsum.photos/id/119/3264/2176.jpg?hmac=PYRYBOGQhlUm6wS94EkpN8dTIC7-2GniC3pqOt6CpNU", 
                 "Tidio is a powerful, all-in-one customer service platform that levels up a customer support and helps to generate more sales. An easily accessible live chat widget makes your business available 24/7, while AI-powered chatbots engage your customers in real-time, so you can sell more. Currently used on 300,000+ websites worldwide.", 
                 22,12,5
             ),
             (10, 
                 "Guru", 
-                "image", 
+                "https://i.picsum.photos/id/180/2400/1600.jpg?hmac=Ig-CXcpNdmh51k3kXpNqNqcDYTwXCIaonYiBOnLXBb8", 
                 "Guru is a company wiki that works in the customer’s workflow, so the information they need to do their job is always at their fingertips. With Guru, the team can create share, access, and update information right in the context of their existing workflow. Guru brings contextual, expert-verified information to the places customers are already working, like Slack, Teams, Email, CRM, their Chrome browser and more.", 
                 100,10,5
             ), 
             (11, 
                 "StackAdapt", 
-                "image", 
+                "https://i.picsum.photos/id/201/5000/3333.jpg?hmac=NE8fOMa8u9PBfkq4AVwEoJdRqoPTNwUsyKvKWuXyNCk", 
                 "StackAdapt is a self-serve advertising platform that specializes in multi-channel solutions including native, display, video, connected TV, and audio ads. StackAdapt's state-of-the-art programmatic platform is where some of the most progressive work in machine learning meets cutting-edge user experience. StackAdapt is designed around the three core pillars of programmatic planning, executing, and analyzing. StackAdapt is ranked as the number one DSP on G2. For five consecutive years, StackAdapt has been recognized as a high performer and the highest-ranking DSP in customer satisfaction by G2, and placed on the Top 100 Software Products list, and the Highest Satisfaction list for 2020, 2021 and 2022. StackAdapt has been named one of the 2022 Ad Age Best Places to Work. Learn more about StackAdapt here: www.stackadapt.com. ", 
                 2,0,6
             ), 
             (12, 
                 "Miro", 
-                "image", 
+                "https://i.picsum.photos/id/225/1500/979.jpg?hmac=jvGoek9ng_Y0GaBbzxN0KJhHaiPtk1VfRcukK8R8FxQ", 
                 "Miro is an online, visual collaboration platform designed to unlock creativity and accelerate innovation among teams of all kinds. The platform’s infinite canvas enables teams to lead engaging workshops and meetings, design products, brainstorm ideas, and more. Miro Developer Platform delivers on the idea that one single shared workspace can support all models of work by connecting the most essential tools and apps used by organizations every day. Miro is truly global, with eleven hubs in cities around the world, including San Francisco, Los Angeles, Austin, New York City, Amsterdam, Perm, Berlin, Munich, London, Tokyo, and Sydney", 
                 10,10,6
             ), 
             (13, 
                 "Paylocity", 
-                "image", 
+                "https://i.picsum.photos/id/250/4928/3264.jpg?hmac=4oIwzXlpK4KU3wySTnATICCa4H6xwbSGifrxv7GafWU", 
                 "Paylocity is an all-in-one software platform gives HR pros a way to easily manage daily tasks in payroll, benefits, talent, and workforce management. But what makes us different is that our technology is backed by a culture that truly cares about our clients’ success. A partner takes the time to get to know you and understand your needs. We work with you to identify the best solutions that will benefit your business today, while paving the way to a better tomorrow.", 
                 15,4,1
             ), 
             (14, 
                 "Sendoso", 
-                "image", 
+                "https://i.picsum.photos/id/252/5000/3281.jpg?hmac=43dQtOHPvmpknnjz0R6jenAi-V9OW6J8sVKUTVOpAaU", 
                 "Sendoso, the leading Sending Platform, is an effective way to connect with customers and drive revenue with personalized gifts, branded swag, eGifts, virtual experiences, and more.", 
                 33,21,1
             ), 
             (15, 
                 "NICE CXone", 
-                "image", 
+                "https://i.picsum.photos/id/366/4000/3000.jpg?hmac=zphhHOH9ofToN2jNHd8z-nc98NrBd8y2okWXEXetLDg", 
                 "NICE (formerly NICE inContact) is the cloud contact center. NICE CXone™ combines best-in-class Omnichannel Routing, Analytics, Workforce Optimization, Automation and Artificial Intelligence on an Open Cloud Foundation. NICE’s solution empowers organizations to provide exceptional customer experiences by acting smarter and responding faster to consumer expectations. NICE’s DEVone developer program is an extensive partner ecosystem, providing applications from partner companies on the CXexchange marketplace that are designed to integrate with NICE CXone.", 
                 92,11,1
             )
@@ -188,6 +188,63 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         }
 
         return arrayCompanies
+    }
+
+    fun allProducts(companyId: Int = 0) : ArrayList<ProductModel> {
+        var arrayProducts : ArrayList<ProductModel> = ArrayList<ProductModel>()
+        val sqLiteDatabase = this.readableDatabase
+        var cursor : Cursor
+        var queryString = "SELECT * FROM products"
+        if (companyId != 0) {
+            queryString += " WHERE companyId=$companyId"
+        }
+
+        try {
+            cursor = sqLiteDatabase.rawQuery(queryString, null)
+        }catch (e:Exception) {
+            arrangeDatabase(sqLiteDatabase)
+            cursor = sqLiteDatabase.rawQuery(queryString, null)
+        }
+
+        while (cursor.moveToNext()) {
+            var model : ProductModel = ProductModel(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getInt(4),
+                cursor.getInt(5),
+                cursor.getInt(6)
+            )
+
+            arrayProducts.add(model)
+        }
+
+        return arrayProducts
+    }
+
+    fun singleProduct(productId: Int) : ProductModel {
+
+        val sqLiteDatabase = this.readableDatabase
+        var cursor : Cursor
+        var query: String = "SELECT * FROM products where ID=$productId"
+
+        try {
+            cursor = sqLiteDatabase.rawQuery(query, null)
+        }catch (e:Exception) {
+            arrangeDatabase(sqLiteDatabase)
+            cursor = sqLiteDatabase.rawQuery(query, null)
+        }
+        cursor.moveToFirst();
+        var product : ProductModel = ProductModel(cursor.getInt(0),
+            cursor.getString(1),
+            cursor.getString(2),
+            cursor.getString(3),
+            cursor.getInt(4),
+            cursor.getInt(5),
+            cursor.getInt(6))
+
+        return product
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
