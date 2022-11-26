@@ -1,6 +1,7 @@
 package com.example.i_am_open
 
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
@@ -11,6 +12,7 @@ import java.io.IOException
 import java.io.OutputStream
 import java.sql.SQLException
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
 
@@ -25,9 +27,6 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
     }
 
-    fun getAllCompanies() {
-
-    }
     fun companyProduct(companyId: Int) {
         val sqliteHelper = this.writableDatabase
         var execSQL = sqliteHelper.execSQL("SELECT * from products where companyId=$companyId")
@@ -35,10 +34,9 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("CREATE TABLE companies(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, image TEXT, description TEXT);")
-        db?.execSQL("CREATE TABLE products(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, image TEXT, description TEXT, companyId INTEGER, FOREIGN KEY(companyId) REFERENCES companies(id));")
+        db?.execSQL("CREATE TABLE products(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, image TEXT, description TEXT,upVote INTEGER, downVote Integer, companyId INTEGER, FOREIGN KEY(companyId) REFERENCES companies(id));")
         db?.execSQL("CREATE TABLE tutorials(ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, image TEXT, description TEXT, isVideo INTEGER, productId INTEGER, FOREIGN KEY(productId) REFERENCES products(id));")
         db?.execSQL("CREATE TABLE product_precautions(ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, productId INTEGER, FOREIGN KEY(productId) REFERENCES products(id));")
-
 //        Timer().schedule(500){
             //calling a function
             insertCompanies(db)
@@ -60,13 +58,13 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         db?.execSQL("""insert into products values 
   (1, 
     "Amazon Dash Button", 
-    "image", 
+    "https://unsplash.com/photos/Uwecr7Su3dU", 
     "Amazon Dash Button is basically a device that gets connected over internet Wi-Fi and makes sure that the user does not lack important household items like soft drinks, grocery material, medical and personal care, kids, and any pet items ever again.\n It allows the user to order products quickly and there is no need to recall the message again and it also helps to reduce the time frame for searching the required product by the user. This IoT product is developed for making the user's lifestyle simple and easy.", 
     1
     ), 
     (2, 
         "August Smart Lock", 
-        "image", 
+        "https://unsplash.com/photos/IJkSskfEqrM", 
         "August Smart Lock allows the user to manage their doors from any location hassle-free. It helps the user to keep thieves away and family in your home. It allows the user to know about each person coming and going into your home, provides unlimited digital keys and no fear of stolen key, gives the status updates of your door as it is properly closed or not, provides a good auto-unlock feature and as soon as the user arrives near the door it opens automatically.", 
         1
         ),
@@ -149,6 +147,23 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         1
     )
      """)
+    }
+
+    fun allCompanies(): ArrayList<CompanyModel> {
+        val sqLiteDatabase = this.readableDatabase
+        var cursor: Cursor = sqLiteDatabase.rawQuery("Select * from companies", null)
+        var arrayCompanies : ArrayList<CompanyModel> = ArrayList<CompanyModel>()
+        while (cursor.moveToNext()) {
+            var model : CompanyModel = CompanyModel(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3)
+            )
+
+            arrayCompanies.add(model)
+        }
+        return arrayCompanies
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

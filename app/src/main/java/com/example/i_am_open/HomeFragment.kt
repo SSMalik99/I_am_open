@@ -73,7 +73,9 @@ class HomeFragment : Fragment() {
         val viewAllBtn = view.findViewById<Button>(R.id.view_all_btn)
 
         databaseHelper = DatabaseHelper(myContext!!)
-        Log.i("database Info-----",databaseHelper.test())
+        val companies: ArrayList<CompanyModel> = databaseHelper.allCompanies()
+//        val products: ArrayList
+
 
         viewAllBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_homeFragment_to_companyFragment)
@@ -88,8 +90,8 @@ class HomeFragment : Fragment() {
         listView.adapter = activity?.let { HomeAdapter(it, productList) }
         listView.setOnItemClickListener(){adapterView, view, position, id ->
             val id = productIds[position]
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
-            listView.findNavController().navigate(action)
+//            val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
+//            listView.findNavController().navigate(action)
 
         }
     }
