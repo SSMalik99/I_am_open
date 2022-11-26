@@ -2,47 +2,64 @@ package com.example.i_am_open
 
 //import android.R
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.appbar.MaterialToolbar
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.i_am_open.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
+        //var toolbar =
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        //Back Button Navigation
+        binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
+//        navHostFragment = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
+//        navController = navHostFragment.findNavController()
+
+
+
+        //Bottom navigation
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-
         setupWithNavController(bottomNavigationView, navController)
+        setupActionBarWithNavController(navController)
 
+        //Showing bottom navigation only for the main screens, and hiding for details screens
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id == R.id.homeFragment || nd.id == R.id.companyFragment || nd.id == R.id.favouriteFragment || nd.id == R.id.profileFragment) {
+            if (nd.id == R.id.homeFragment || nd.id == R.id.favouriteFragment || nd.id == R.id.profileFragment) {
                 bottomNavigationView.visibility = View.VISIBLE
-            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
+//            else if (nd.id == R.id.companyFragment){
+//                bottomNavigationView.visibility = View.VISIBLE
+//                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//            }
+            else {
                 bottomNavigationView.visibility = View.GONE
             }
+
 
             //val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
             //val navController = findNavController(R.id.fragmentContainerView)
@@ -69,5 +86,9 @@ class MainActivity : AppCompatActivity() {
 //        val navController = findNavController(R.id.fragmentContainerView)
 //        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
 //    }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
