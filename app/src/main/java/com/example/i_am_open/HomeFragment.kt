@@ -91,8 +91,8 @@ class HomeFragment : Fragment() {
         listView.setOnItemClickListener(){adapterView, view, position, id ->
             val id = productIds[position]
 
-            val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
-            listView.findNavController().navigate(action)
+//            val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
+//            listView.findNavController().navigate(action)
 
         }
     }
