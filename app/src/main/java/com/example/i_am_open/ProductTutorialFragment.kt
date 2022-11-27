@@ -28,6 +28,7 @@ class ProductTutorialFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_product_tutorial, container, false)
         databaseHelper = DatabaseHelper(view.context)
+
         val tutorial = databaseHelper.singleTutorial(tutorialId)
         val product = databaseHelper.singleProduct(tutorial.productId)
 
@@ -38,6 +39,7 @@ class ProductTutorialFragment : Fragment() {
 
         titleView.text = tutorial.title
         descriptionView.text = tutorial.description
+
 
 
         return view

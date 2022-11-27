@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.i_am_open.adapters.VideoTutorialAdapter
 
 class ProductVideoGuideFragment : Fragment() {
 
@@ -14,7 +17,7 @@ class ProductVideoGuideFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        productId = arguments?.getInt("id")!!
+        productId = arguments?.getInt("productId")!!
     }
 
     override fun onCreateView(
@@ -25,7 +28,15 @@ class ProductVideoGuideFragment : Fragment() {
 
         val view =  inflater.inflate(R.layout.fragment_product_video_guide, container, false)
         databaseHelper = DatabaseHelper(view.context)
-        val tutorials = databaseHelper.productTutorial(1,TutorialType.VIDEO)
+
+//        get videos from the database
+        val videoTutorials = databaseHelper.productTutorial(productId, TutorialType.VIDEO)
+
+//        set recycle view and adapter
+        val recycleView = view.findViewById<RecyclerView>(R.id.videoTutorialRecycleView)
+        val videoAdapter = VideoTutorialAdapter(view.context, videoTutorials)
+        recycleView.layoutManager = LinearLayoutManager(view.context)
+        recycleView.adapter = videoAdapter
 
         return view
     }

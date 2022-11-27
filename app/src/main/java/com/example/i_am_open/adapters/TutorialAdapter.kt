@@ -25,7 +25,7 @@ class TutorialAdapter(val context: Context, val tutorials : ArrayList<TutorialMo
     }
 
     override fun onBindViewHolder(holder: TutorialViewHolder, position: Int) {
-        val tutorial = tutorials.get(position)
+        val tutorial = tutorials[position]
         holder.tutorialTitle.text = tutorial.title
         holder.tutorialId = tutorial.id
         val description = tutorial.description

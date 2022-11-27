@@ -35,6 +35,8 @@ class ProductDetailFragment : Fragment() {
         productId = arguments?.getInt("id")!!
     }
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         // Inflate the layout for this fragment
@@ -65,7 +67,7 @@ class ProductDetailFragment : Fragment() {
         }
 
         view.findViewById<TextView>(R.id.productVideoButton).setOnClickListener {
-            val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductVideoGuideFragment()
+            val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductVideoGuideFragment2(productId)
             view.findNavController().navigate(action)
         }
 
@@ -77,7 +79,9 @@ class ProductDetailFragment : Fragment() {
 
         val recyclerView  = view.findViewById<RecyclerView>(R.id.tutorialListView)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
+
         val tutorials = databaseHelper.productTutorial(productId, TutorialType.READABLE)
+
         val tutorialAdapter = TutorialAdapter(view.context, tutorials)
         recyclerView.adapter = tutorialAdapter
 

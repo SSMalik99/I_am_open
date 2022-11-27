@@ -5,15 +5,10 @@
       <map>
         <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/activity_main.xml" value="0.14365152919369786" />
         <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/activity_splash.xml" value="0.264" />
-        <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/favourite_product_item.xml" value="0.1" />
         <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/fragment_favourite.xml" value="0.264" />
         <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/fragment_product_detail.xml" value="0.30322173089071386" />
-        <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/fragment_product_video_guide.xml" value="0.21693840579710144" />
-        <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/home_list_item.xml" value="0.21693840579710144" />
-        <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/product_tutorial_item.xml" value="0.4" />
-        <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/layout/video_tutorial_item.xml" value="0.2" />
         <entry key="..\:/MDEV1008AndroidDev/I_am_open/app/src/main/res/menu/bottom_menu.xml" value="0.536" />
+        <entry key="app/src/main/res/drawable-v24/arrow_right.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/company.xml" value="0.249" />
         <entry key="app/src/main/res/drawable/favorite_border.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/heart.xml" value="0.1" />
@@ -36,6 +31,9 @@
         <entry key="app/src/main/res/layout/fragment_product_video_guide.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/product_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/product_tutorial.xml" value="0.11854103343465046" />
+        <entry key="app/src/main/res/layout/product_tutorial_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/video_tutorial_item.xml" value="0.11854103343465046" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/product_detail_menu.xml" value="0.24270833333333333" />
       </map>
