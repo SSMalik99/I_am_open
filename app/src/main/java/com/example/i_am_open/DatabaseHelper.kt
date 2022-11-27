@@ -1,7 +1,6 @@
 package com.example.i_am_open
 
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.core.content.contentValuesOf
@@ -23,7 +22,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
     fun companyProduct(companyId: Int) : ArrayList<ProductModel> {
         val sqliteHelper = this.writableDatabase
-        var cursor = sqliteHelper.rawQuery("SELECT * from products where companyId=$companyId", null)
+        val cursor = sqliteHelper.rawQuery("SELECT * from products where companyId=$companyId", null)
 
         val products = ArrayList<ProductModel>()
         while (cursor.moveToNext()){
@@ -50,14 +49,16 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         val cursor = sqliteDatbase.rawQuery("SELECT * FROM companies where ID= $companyId", null)
         cursor.moveToFirst()
 
-        return CompanyModel(
+        val model = CompanyModel(
             cursor.getInt(0),
             cursor.getString(1),
             cursor.getString(2),
             cursor.getString(3)
         )
-
         cursor.close()
+        return model
+
+
 
     }
 
