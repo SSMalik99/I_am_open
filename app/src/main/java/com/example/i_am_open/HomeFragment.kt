@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.OrientationHelper
+import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment() {
 
@@ -21,18 +24,10 @@ class HomeFragment : Fragment() {
 //        mContext = context
 //    }
 
-    val productImages = arrayOf<Int>(
-        R.drawable.product1,
-        R.drawable.adobe,
-        R.drawable.canon_printer,
-        R.drawable.drone,
-        R.drawable.vr_set,
-        R.drawable.hovernoard
-    )
-
     lateinit var databaseHelper : DatabaseHelper
     var myContext: Context? = null
     var products = ArrayList<ProductModel>()
+    var companies = ArrayList<CompanyModel>()
 
 
     override fun onCreateView(
@@ -43,7 +38,7 @@ class HomeFragment : Fragment() {
         val viewAllBtn = view.findViewById<Button>(R.id.view_all_btn)
 
         databaseHelper = DatabaseHelper(myContext!!)
-        val companies: ArrayList<CompanyModel> = databaseHelper.allCompanies()
+        companies = databaseHelper.allCompanies()
         products = databaseHelper.allProducts()
 
         viewAllBtn.setOnClickListener {
@@ -60,10 +55,12 @@ class HomeFragment : Fragment() {
         listView.setOnItemClickListener(){adapterView, view, position, id ->
             val id = products[position]?.id
             val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
-//            view.performAccessibilityAction(R.id.action_homeFragment_to_productDetailFragment, id)
             listView.findNavController().navigate(action)
-
         }
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(myContext, RecyclerView.HORIZONTAL, false)
+        recyclerView.adapter = CompanyImageListAdapter(companies)
     }
 
 }

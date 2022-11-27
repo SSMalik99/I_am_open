@@ -67,7 +67,6 @@ class CompanyFragment : Fragment() {
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_company, container, false)
-
         databaseHelper = DatabaseHelper(myContext!!)
         Log.i("database Info-----",databaseHelper.test())
         companies = databaseHelper.allCompanies()
