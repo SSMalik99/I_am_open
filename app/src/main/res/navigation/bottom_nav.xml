@@ -72,6 +72,16 @@
                 />
         </action>
     </fragment>
+    <fragment android:id="@+id/productVideoGuide"
+        android:name="com.example.i_am_open.ProductVideoGuideFragment"
+        android:label="Video Detail"
+        tools:layout="@layout/fragment_product_video_guide" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.i_am_open.ProfileFragment"
@@ -94,6 +104,7 @@
         <action
             android:id="@+id/action_productDetailFragment_to_productVideoGuideFragment2"
             app:destination="@id/productVideoGuideFragment" />
+
         <action
             android:id="@+id/action_productDetailFragment_to_productTutorialFragment2"
             app:destination="@id/productTutorialFragment" />
