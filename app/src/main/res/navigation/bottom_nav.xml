@@ -100,7 +100,12 @@
         <action
             android:id="@+id/action_productDetailFragment_to_productLegalFragment2"
             app:destination="@id/productLegalFragment"
-            />
+            >
+            <argument
+                android:name="productId"
+                app:argType="integer"
+                android:defaultValue="1" />
+        </action>
         <action
             android:id="@+id/action_productDetailFragment_to_productVideoGuideFragment2"
             app:destination="@id/productVideoGuideFragment" />

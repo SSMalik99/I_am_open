@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.core.content.contentValuesOf
+import com.example.i_am_open.interfaces.LegalPrecautionInterface
 import java.lang.Exception
 import kotlin.collections.ArrayList
 
@@ -72,6 +73,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         insertCompanies(db)
         insertProducts(db)
         insertTutorial(db)
+        insertLegallyPrecautions(db)
     }
 
     private fun createTables(db: SQLiteDatabase?) {
@@ -391,7 +393,9 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     fun isProductLiked(productId: Int) : Boolean {
         val sqliteDatabase = this.readableDatabase
         val cursor = sqliteDatabase.rawQuery("Select * from liked_products where productId=$productId", null)
-        return cursor.count > 0
+        val isLiked = cursor.count > 0
+        cursor.close()
+        return isLiked
     }
     private fun insertTutorial(db: SQLiteDatabase?) {
         db?.execSQL( """Insert into tutorials(title, image, description, isVideo, productId) values 
@@ -458,7 +462,281 @@ If you don't have a drill or aren't able or allowed to drill holes on the proper
 You'll need a wireless router for installing the video doorbell as it requires Internet access. To complete the process, download the Ring app, and follow the further instructions. You can get the Ring app for iOS and Android. The app is free and lets you access a video stream of what's outside your door.
 Just to note, you don't have to have an existing doorbell to install a Ring one, so that shouldn't deter you from getting one.
 ", 0, 6
-    )
-            """)
+    )""")
+    }
+
+    private fun insertLegallyPrecautions(db : SQLiteDatabase?) {
+        db?.execSQL("""Insert into product_precautions (title, description, productId) values 
+            ("Legal Precautions",
+"Is the device safe to use and to hook up with your local network or are you opening a box of worms by installing this in your home?
+Unfortunately the Amazon PR team declined to answer our questions even though it previously seemed like they were going to work with us on this report. However we got great insight from industry and adoption experts, which we want to share with you.
+It should be remembered that items such as phones and printers have been used to access networks, I have also seen smart toasters and kettles hacked. The IoT is an area of concern within the security industry, if high value devices with huge development budgets can be compromised despite care and attention to security then it is likely little to no care will be taken with the unsophisticated almost throw away devices. In themselves there is little risk despite ordering an overabundance of detergent, but once these integrate more tightly with other devices the risks rise, and of course they would potentially provide access to the communication networks they utilize. But note that this is all speculation, there is zero evidence that I am aware of that suggest the Dash Button might introduce risk.”
+
+
+Never underestimate the ingenuity of hackers
+There is indeed no evidence on the device bringing harm. But is there perhaps a way of mitigating risk even further? We talked with Sr. Security Researcher Stephen Cobb from ESET and he says, “I don’t have data on reliability, but given the need to make these as minimal as possible I have to wonder how they will perform in damp locations and remote parts of the house. Battery life and corrosion could be an issue too, although I have no data on these aspects. Data leakage during transmission is a possibility but that data has limited potential for abuse. The devices themselves can be hacked for a variety of uses including triggering events on a network.
+", 1), (
+"What could happen if something goes wrong?",
+"Smart locks are one of those connected devices that seem to worry lots of people. The pros: They offer a lot of convenience with multiple ways to unlock the door to your home, a way to track who comes and goes from your home, they can allow you give out a keypad number to people like a babysitter and then revoke that when they no longer need access, and they can help you make sure you locked your front door when your anxiety kicks in on vacation. The cons: They can be vulnerable to any number of things such as power outages, lost or compromised phones, ransomware attacks on the company who made your lock, product security vulnerabilities, WiFi and/or Bluetooth vulnerabilities, home hub vulnerabilities, bad software updates, data leaks, and more.
+With all that said, how do August Smart Locks stack up? On the security side, in 2019, security researchers found a vulnerability in a version of August's smart locks that use the Connect add-on to connect to WiFi that could let hackers take over your home WiFi. The versions of August smart locks with WiFi built-in didn't seem to be vulnerable to this security threat.
+On the privacy side of things, August seems to do better. August doesn't sell your personal information, which is good. They also say they will only use your personal information to send you relevant content where they have your consent to do so. This is also good. All in all, August seems to do a good job with users’ privacy. Just be careful with what you share with third parties such as Alexa or Google Assistant as they can collect data on you too.
+What’s the worst that could happen? Well, it’s entirely possible August could suffer a ransomware attack where bad people hold all smart lock access hostage unless August pays up. You can’t get into your home, your pup really has to pee, and things go south from there. You and your pup really don’t want that.
+",2
+), (
+"Privacy and security auditing for Canary devices.",
+"We have strict internal policies and barriers in place to ensure that all personal customer data remains private and secure within the Canary Cloud at all times. Only select Canary employees have access keys to systems that contain sensitive customer information. Authorized access to the Canary Cloud is granted on a least-privilege basis.
+
+Third-party security consultants audit our systems regularly. We constantly monitor the security landscape for new threats and potential risks, and improve our system accordingly using proven technologies. As improvements are made, the Canary Cloud, Canary app, and embedded Canary firmware will be updated regularly to provide users with our most recent security advancements.
+
+Transparency and user accounts.
+Our system balances personal privacy with principles of mutual trust and transparency. Individual users have unique passwords and login credentials which are stored using a salted one-way hash function. Users can also easily customize settings to disable the camera and microphone. Additionally, the Canary app promotes information-sharing and visibility between members of the same household; the in-app timeline provides a shared view of what’s actually happening at home, including mode changes, events, and activity.
+",3
+),(
+"Legal Precautions",
+"The idea of controlling your garage door remotely and verifying that everything is secure at home, or having packages delivered directly into your garage is enticing for many people. The convenience that many of these IOT devices provide often persuades consumers away from thinking about the possible security concerns.
+
+McAfee Advanced Threat Research recently investigated Chamberlain’s MyQ Hub, a “Universal” garage door automation platform. The way Chamberlain has made this device universal is via a Hub, which acts as a new garage door opener, similar to the one that you would have in your car. This allows the MyQ Hub to retrofit and work with a wide variety of garage doors.
+
+We found that Chamberlain did a fairly good job of securing this device, which is typically uncommon for IOT devices. However, we discovered that there is a flaw in the way the MyQ Hub communicates with the remote sensor over radio frequencies.
+From an attack perspective there are three main vectors that we began to look at: local network, remote access (API, or third-party integration), and RF communications between the sensor and the Hub. The first thing we attempted was to gain access to the device via the local network. A quick port scan of the device revealed that it was listening on port 80. When attempting to navigate to the device at port 80 it would redirect to start.html and return a 404 error. No other ports were open on the device.
+",4
+),(
+"Legal Precautions",
+"Like any piece of technology, video doorbells are vulnerable to hacking. In 2019, The Washington Post reported that a hacker gained access to a Ring camera in a children's room and began talking to the 8-year-old girl who was in the room.
+While Ring has since taken steps to increase security, this incident highlights the importance of being vigilant about the security of all your devices.
+Your Ring Doorbell can be hacked and used to spy on you or your family if you don't take the necessary precautions. From regular software updates to strong passwords and two-factor authentication, there are several ways you can help keep your Ring doorbell safe from hackers.
+All Wi-Fi-enabled devices are potential targets for hackers, even cloud-based ones like the Ring.
+Cloud storage is a great way to ensure that you never lose your footage, but it also means that someone else can access it.
+", 5
+),(
+"Generic Privacy Policy",
+"This privacy policy  will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences", 6
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+7
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+8
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+9
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+10
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+11
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+12
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+13
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+14
+),(
+"Generic Privacy Policy",
+"This privacy policy will help you understand how we uses and
+protects the data you provide to us when you visit and use service.
+We reserve the right to change this policy at any given time, of which you will be promptly
+updated. If you want to make sure that you are up to date with the latest changes, we advise
+you to frequently visit this page.
+What User Data We Collect
+When you visit the website, we may collect the following data:
+• Your IP address.
+• Your contact information and email address.
+• Other information such as interests and preferences.
+• Data profile regarding your online behavior on our website.
+Why We Collect Your Data
+We are collecting your data for several reasons:
+• To better understand your needs.
+• To improve our services and products.
+• To send you promotional emails containing the information we think you will find
+interesting.
+• To contact you to fill out surveys and participate in other types of market research.
+• To customize our website according to your online behavior and personal preferences",
+15
+)
+""")
+    }
+
+    fun getProductPrecaution(productId: Int): LegalPrecautionInterface {
+        val sqliteDatabase = this.readableDatabase
+        val cursor = sqliteDatabase.rawQuery("SELECT * From product_precautions where productId= $productId", null)
+        cursor.moveToFirst()
+        val precaution = LegalPrecautionInterface(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getInt(3))
+        cursor.close()
+        return precaution
     }
 }

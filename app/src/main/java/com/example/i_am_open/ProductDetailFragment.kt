@@ -70,7 +70,7 @@ class ProductDetailFragment : Fragment() {
         }
 
         view.findViewById<TextView>(R.id.productLegalButton).setOnClickListener {
-            val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductLegalFragment()
+            val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductLegalFragment2(productId)
             view.findNavController().navigate(action)
         }
 

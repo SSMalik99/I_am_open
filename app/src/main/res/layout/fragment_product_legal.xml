@@ -6,55 +6,52 @@
     android:layout_height="match_parent"
 
     tools:context=".ProductLegalFragment">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+   <androidx.core.widget.NestedScrollView
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/data_legal"
-        tools:ignore="MissingConstraints"
-        />
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+           android:layout_marginTop="9dp"
+           android:paddingHorizontal="5dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:text="@string/data_dog_title"
-        android:textColor="@color/black"
-        android:textSize="20sp"/>
+           <ImageView
+               android:id="@+id/precautionProductImage"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:src="@drawable/data_legal"
+               tools:ignore="MissingConstraints"
+               />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="?android:attr/listDivider"
-        />
+           <TextView
+               android:id="@+id/precautionTitle"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Singh"
+               android:textStyle="bold"
+               android:textColor="@color/black"
+               android:textSize="25dp"/>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:lineHeight="20dp"
-        android:text="@string/data_dog_details"
-        android:textColor="@color/black"
-        android:textSize="14sp"/>
+           <View
+               android:id="@+id/divider"
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:background="?android:attr/listDivider"
+               />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-android:lineHeight="20dp"
-        android:text="@string/data_dog_dis"
-        android:textAlignment="gravity"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+           <TextView
+               android:id="@+id/precautionDescription"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Singh"
+               android:textSize="14dp"
+               android:lineHeight="20dp"/>
 
-    </LinearLayout>
 
+       </LinearLayout>
+
+   </androidx.core.widget.NestedScrollView>
 </LinearLayout>
