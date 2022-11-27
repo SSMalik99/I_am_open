@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         //Back Button Navigation
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+
 //        navHostFragment = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
 //        navController = navHostFragment.findNavController()
 

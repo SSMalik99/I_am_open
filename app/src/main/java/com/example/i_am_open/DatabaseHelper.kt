@@ -398,16 +398,67 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
             ("How do you use a dash button?", "N/A", 
 "Dash Buttons are about the size of a pack of gum. You can stick them around your house using the adhesive on the back or the included clip. Once you set them up, they connect to your home Wi-Fi and order the products you've specified when you press them. Amazon sells dozens of Dash Buttons for various brands.
 Full Tutorial:
-    Amazon Dash was a consumer goods ordering service which uses proprietary devices and APIs for ordering goods over the Internet.
+
+Amazon Dash was a consumer goods ordering service which uses proprietary devices and APIs for ordering goods over the Internet.
 Amazon Dash consisted of multiple components, which include:
-    the Amazon Dash Wand, a Wi-Fi connected barcode scanner and voice command device, used to reorder consumer goods around the house, integrating with AmazonFresh;
-    the Amazon Dash Button, a small consumer electronic device that can be placed around the house and programmed to order a consumer goods such as disinfectant wipes or paper towels; 
-    the Amazon Dash Replenishment Service, which allows manufacturers to add a physical button or auto-detection capability to their devices to reorder supplies from Amazon when necessary.
-    Amazon Virtual Dash Buttons, which mimic the appearance and function of physical Dash Buttons but are displayed on Amazon's website and some smart devices with displays.
+the Amazon Dash Wand, a Wi-Fi connected barcode scanner and voice command device, used to reorder consumer goods around the house, integrating with AmazonFresh;
+the Amazon Dash Button, a small consumer electronic device that can be placed around the house and programmed to order a consumer goods such as disinfectant wipes or paper towels; 
+the Amazon Dash Replenishment Service, which allows manufacturers to add a physical button or auto-detection capability to their devices to reorder supplies from Amazon when necessary.
+Amazon Virtual Dash Buttons, which mimic the appearance and function of physical Dash Buttons but are displayed on Amazon's website and some smart devices with displays.
+
+
 Alternative use
-    In August 2015, within a week of the first shipment of Dash buttons to Amazon Prime members, Popular Mechanics reported that it had already been reprogrammed for use as a push-button data tracker. Computer scientist Edward Benson published instructions online to turn it into a wireless spreadsheet entry device, or a trigger for any other API endpoint. The approach was based on hijacking and re-routing the button's network connection with Amazon's servers.
-    By May 2016, Consumers' Research pointed out that Amazon Dash was being reprogrammed to use for other purposes such as ordering pizza, tracking time, and controlling lights and outlets in households configured to respond to such commands. In response, Amazon introduced a" 
-                , 0, 1)
+In August 2015, within a week of the first shipment of Dash buttons to Amazon Prime members, Popular Mechanics reported that it had already been reprogrammed for use as a push-button data tracker. Computer scientist Edward Benson published instructions online to turn it into a wireless spreadsheet entry device, or a trigger for any other API endpoint. The approach was based on hijacking and re-routing the button's network connection with Amazon's servers.
+
+By May 2016, Consumers' Research pointed out that Amazon Dash was being reprogrammed to use for other purposes such as ordering pizza, tracking time, and controlling lights and outlets in households configured to respond to such commands. In response, Amazon introduced a programmer-friendly, but more expensive button in the form of an Internet of Things Dash Button which allows programmers to make programming modifications to the device.", 0, 1),
+(
+"Short Tutorial", "N/A", 
+"The August lock is feature rich and offers plenty of integrations. The features we disliked (auto unlock, laggy Alarm.com integration, and DoorSense) paled in comparison to the overall stellar performance of the lock. And remember, some of our issues were self-created thanks to Door Armor."
+,0,2),
+("Using the August App", "N/A",
+"The real beauty of a smart lock is app control, and the August app is easy to use, responsive, and organized. First things first, there’s Keychain. From here, you can click in to control individual locks if you happen to have multiple locks. Once you click in, you will be presented with four tabs.
+From the first tab, you can lock and unlock the door. From the second tab, you can view a thirty-day activity history. You can see when the lock was locked/unlocked both manually and by a user.
+The third tab is your guest list. You can add multiple users and divide them into two categories: Owner and Guest. First of all, though Owners have ultimate access, you can have multiple owners. Second, you can also have multiple guests, and each guest can have settings unique to their access.
+In digging into the guest access settings, you’ll find “always”, “recurring”, and “temporary” access. Recurring is great for cleaners or dog walkers or people who visit on a regular schedule. You can set their access by day of the week and time. For example, Mondays and Thursdays between 4 PM and 7 PM. The downside here is that recurring means weekly, so this doesn’t work great if you have a monthly or bi-weekly cleaning crew.",
+            0,2),
+("How does it work?", "N/A",
+"Motion detection is the key for Canary. When it senses something moving, it starts recording that video stream and, whether day or night, the clips are crystal clear thanks to infrared LED technology and a solid camera array. Canary sometimes captures false positives but, if you start to tag these events, then your Canary begins to learn what it needs to ignore. What's more, a recent update means that you can dial up or down its sensitivity to help calibrate it even further.
+The other time that it needs to ignore movement is, of course, when you and your housemates are home. Fortunately, there's no need to manually arm and disarm Canary each time you come and go. Instead, you download the Canary app to your mobile and it will detect whether that phone is home or not through GPS, cellular data and Wi-Fi, and, yes, you can have more than one phone connected to a single Canary. Of course, if you wish to arm the device when you go up to bed at night, then that's perfectly possible too.
+Lastly, one of the most important parts of the system to get your head around is your timeline. It's here, on the app, where Canary sends the clips it captures for you to view. You can filter them by events that occurred only while armed or by ones that you've bookmarked for whatever reason. It's also possible to download video clips depending upon your subscription plan.
+",
+    0,3),
+    (
+    "N/A",
+    "N/A","https://www.youtube.com/watch?v=pJycjYkQNQo",1,3
+    ),(
+    "How does it work?", "N/A",
+"Motion detection is the key for Canary. When it senses something moving, it starts recording that video stream and, whether day or night, the clips are crystal clear thanks to infrared LED technology and a solid camera array. Canary sometimes captures false positives but, if you start to tag these events, then your Canary begins to learn what it needs to ignore. What's more, a recent update means that you can dial up or down its sensitivity to help calibrate it even further.
+The other time that it needs to ignore movement is, of course, when you and your housemates are home. Fortunately, there's no need to manually arm and disarm Canary each time you come and go. Instead, you download the Canary app to your mobile and it will detect whether that phone is home or not through GPS, cellular data and Wi-Fi, and, yes, you can have more than one phone connected to a single Canary. Of course, if you wish to arm the device when you go up to bed at night, then that's perfectly possible too.
+Lastly, one of the most important parts of the system to get your head around is your timeline. It's here, on the app, where Canary sends the clips it captures for you to view. You can filter them by events that occurred only while armed or by ones that you've bookmarked for whatever reason. It's also possible to download video clips depending upon your subscription plan.
+", 0,4
+    ),(
+    "N/A", "N/A", "https://www.youtube.com/watch?v=pJycjYkQNQo", 1, 4
+    ),(
+    "The who, what and how", "N/A",
+    "Who this is for: The Chamberlain MyQ is for someone who wants to control or keep tabs on their garage door from near or afar.
+What you need to know: Setting up this gadget took about 15 minutes, and it’s quite intuitive. Chamberlain says the MyQ supports most garage door openers made after 1993, but mileage could potentially vary. It also doesn’t support Amazon Alexa or Apple HomeKit integrations.
+How it compares: For $29.98 (when it’s not on sale), the Chamberlain MyQ is a no-brainer addition to a home with a garage door. It doesn’t require the long install or cost of a new garage door opener with a smart hub built in and supports a long list of openers. Chances are that includes the one in your home.
+Legal Precautions
+The idea of controlling your garage door remotely and verifying that everything is secure at home, or having packages delivered directly into your garage is enticing for many people. The convenience that many of these IOT devices provide often persuades consumers away from thinking about the possible security concerns.
+McAfee Advanced Threat Research recently investigated Chamberlain’s MyQ Hub, a “Universal” garage door automation platform. The way Chamberlain has made this device universal is via a Hub, which acts as a new garage door opener, similar to the one that you would have in your car. This allows the MyQ Hub to retrofit and work with a wide variety of garage doors.
+We found that Chamberlain did a fairly good job of securing this device, which is typically uncommon for IOT devices. However, we discovered that there is a flaw in the way the MyQ Hub communicates with the remote sensor over radio frequencies.
+From an attack perspective there are three main vectors that we began to look at: local network, remote access (API, or third-party integration), and RF communications between the sensor and the Hub. The first thing we attempted was to gain access to the device via the local network. A quick port scan of the device revealed that it was listening on port 80. When attempting to navigate to the device at port 80 it would redirect to start.html and return a 404 error. No other ports were open on the device.
+",0,5
+    ),(
+    "N/A", "N/A", "https://youtu.be/U86WHwOXFm4", 1, 5
+    ),(
+    "How Does a Ring Doorbell Work? What You Need to Know", "N/A",
+    "The smart doorbell's camera provides a clear picture of everything and everyone at your door. You can view visitors and check on motion through the app day or night. At night, the quality doesn't suffer because the device uses infrared technology for its night vision.
+If you don't have a drill or aren't able or allowed to drill holes on the property, you can opt for the Ring No-Drill Mount. It's a mounting plate designed for the Ring Video Doorbell which lets you mount the device without having to make holes.
+You'll need a wireless router for installing the video doorbell as it requires Internet access. To complete the process, download the Ring app, and follow the further instructions. You can get the Ring app for iOS and Android. The app is free and lets you access a video stream of what's outside your door.
+Just to note, you don't have to have an existing doorbell to install a Ring one, so that shouldn't deter you from getting one.
+", 0, 6
+    )
             """)
     }
 }
