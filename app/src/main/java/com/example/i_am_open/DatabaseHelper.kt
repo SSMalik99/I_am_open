@@ -1,20 +1,12 @@
 package com.example.i_am_open
 
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
+import androidx.core.content.contentValuesOf
 import java.lang.Exception
-import java.sql.SQLException
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
+
 
 
 class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
@@ -28,9 +20,46 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
     }
 
-    fun companyProduct(companyId: Int) {
+    fun companyProduct(companyId: Int) : ArrayList<ProductModel> {
         val sqliteHelper = this.writableDatabase
-        var execSQL = sqliteHelper.execSQL("SELECT * from products where companyId=$companyId")
+        val cursor = sqliteHelper.rawQuery("SELECT * from products where companyId=$companyId", null)
+
+        val products = ArrayList<ProductModel>()
+        while (cursor.moveToNext()){
+            val model = ProductModel(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getInt(4),
+                cursor.getInt(5),
+                cursor.getInt(6)
+            )
+
+            products.add(model)
+        }
+
+        cursor.close()
+        return products
+
+    }
+
+    fun singleCompany(companyId : Int) : CompanyModel {
+        val sqliteDatbase = this.writableDatabase
+        val cursor = sqliteDatbase.rawQuery("SELECT * FROM companies where ID= $companyId", null)
+        cursor.moveToFirst()
+
+        val model = CompanyModel(
+            cursor.getInt(0),
+            cursor.getString(1),
+            cursor.getString(2),
+            cursor.getString(3)
+        )
+        cursor.close()
+        return model
+
+
+
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -42,6 +71,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         createTables(db)
         insertCompanies(db)
         insertProducts(db)
+        insertTutorial(db)
     }
 
     private fun createTables(db: SQLiteDatabase?) {
@@ -49,6 +79,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         db?.execSQL("CREATE TABLE products(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, image TEXT, description TEXT,upVote INTEGER, downVote Integer, companyId INTEGER, FOREIGN KEY(companyId) REFERENCES companies(id));")
         db?.execSQL("CREATE TABLE tutorials(ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, image TEXT, description TEXT, isVideo INTEGER, productId INTEGER, FOREIGN KEY(productId) REFERENCES products(id));")
         db?.execSQL("CREATE TABLE product_precautions(ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, productId INTEGER, FOREIGN KEY(productId) REFERENCES products(id));")
+        db?.execSQL("CREATE TABLE liked_products(ID INTEGER PRIMARY KEY AUTOINCREMENT, productId Integer, FOREIGN KEY(productId) REFERENCES products(id));")
     }
 
     private fun dropTables(db: SQLiteDatabase?) {
@@ -56,20 +87,22 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         db?.execSQL("Drop Table if exists products")
         db?.execSQL("Drop Table if exists tutorials")
         db?.execSQL("Drop Table if exists product_precautions")
+        db?.execSQL("Drop Table if exists liked_products")
     }
 
     private fun insertCompanies(db: SQLiteDatabase?) {
 
         db?.execSQL( """Insert into companies values 
-            (1, 'MindTree', 'https://unsplash.com/photos/4t6nCthD0es', 'MindTree is well established company developed in 2003 after the boom of internet After Our Innovation we are continuously modify our technology to provide better product for the world.'),
-            (2, 'InoCoal', 'https://unsplash.com/photos/PdH0H4S6FTM', 'InoCoal is well established company developed in 2006 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
-        (3, 'JrekVi', 'https://unsplash.com/photos/Ub9LkIWxyec', 'Jrekvi is well established company developed in 2005 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
-        (4, '7^2Half', 'https://unsplash.com/photos/fT6-YkB0nfg', '7^2Half(Seven Square 2 half) is a company which provide technological solution better then any other opponent,Clear from its name problem is divided in half portion to find a great solution'),
-        (5, 'Rockery', 'https://unsplash.com/photos/GvPceVqbxm4', 'Rockery started in 2015 most recent company which is dominating in the field of semiconductors.It is providing equal competition to the originally developed companies'),
-        (6, 'Zoriyan', 'https://unsplash.com/photos/1deQbU6DhBg', 'Zoriyan is new child in the era, Launched in 2021 its main focus is to provide solutions for the problem which are mostly underestimated by common people.')""")
+            (1, 'MindTree', 'https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg', 'MindTree is well established company developed in 2003 after the boom of internet After Our Innovation we are continuously modify our technology to provide better product for the world.'),
+            (2, 'InoCoal', 'https://cdn.pixabay.com/photo/2014/01/30/18/26/skyline-255116_1280.jpg', 'InoCoal is well established company developed in 2006 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
+        (3, 'JrekVi', 'https://cdn.pixabay.com/photo/2019/12/02/08/04/city-4667143_1280.jpg', 'Jrekvi is well established company developed in 2005 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
+        (4, '7^2Half', 'https://cdn.pixabay.com/photo/2019/04/20/11/39/japan-4141578_1280.jpg', '7^2Half(Seven Square 2 half) is a company which provide technological solution better then any other opponent,Clear from its name problem is divided in half portion to find a great solution'),
+        (5, 'Rockery', 'https://cdn.pixabay.com/photo/2016/11/29/06/22/buildings-1867772_1280.jpg', 'Rockery started in 2015 most recent company which is dominating in the field of semiconductors.It is providing equal competition to the originally developed companies'),
+        (6, 'Zoriyan', 'https://cdn.pixabay.com/photo/2020/02/27/14/33/building-4884852_1280.jpg', 'Zoriyan is new child in the era, Launched in 2021 its main focus is to provide solutions for the problem which are mostly underestimated by common people.')""")
     }
 
     private  fun insertProducts(db : SQLiteDatabase?) {
+
         db?.execSQL("""insert into products values 
           (1, 
             "Amazon Dash Button", 
@@ -165,19 +198,19 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     }
 
     fun allCompanies(): ArrayList<CompanyModel> {
-        var arrayCompanies : ArrayList<CompanyModel> = ArrayList<CompanyModel>()
+        val arrayCompanies = ArrayList<CompanyModel>()
         val sqLiteDatabase = this.readableDatabase
-        var cursor : Cursor
 
-        try {
-            cursor = sqLiteDatabase.rawQuery("Select * from companies", null)
+
+        val cursor = try {
+            sqLiteDatabase.rawQuery("Select * from companies", null)
         }catch (e:Exception) {
             arrangeDatabase(sqLiteDatabase)
-            cursor = sqLiteDatabase.rawQuery("Select * from companies", null)
+            sqLiteDatabase.rawQuery("Select * from companies", null)
         }
 
         while (cursor.moveToNext()) {
-            var model : CompanyModel = CompanyModel(
+            val model = CompanyModel(
                 cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
@@ -186,28 +219,29 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
             arrayCompanies.add(model)
         }
+        cursor.close()
 
         return arrayCompanies
     }
 
     fun allProducts(companyId: Int = 0) : ArrayList<ProductModel> {
-        var arrayProducts : ArrayList<ProductModel> = ArrayList<ProductModel>()
+        val arrayProducts = ArrayList<ProductModel>()
         val sqLiteDatabase = this.readableDatabase
-        var cursor : Cursor
+
         var queryString = "SELECT * FROM products"
         if (companyId != 0) {
             queryString += " WHERE companyId=$companyId"
         }
 
-        try {
-            cursor = sqLiteDatabase.rawQuery(queryString, null)
+        val cursor = try {
+            sqLiteDatabase.rawQuery(queryString, null)
         }catch (e:Exception) {
             arrangeDatabase(sqLiteDatabase)
-            cursor = sqLiteDatabase.rawQuery(queryString, null)
+            sqLiteDatabase.rawQuery(queryString, null)
         }
 
         while (cursor.moveToNext()) {
-            var model : ProductModel = ProductModel(
+            val model = ProductModel(
                 cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
@@ -220,29 +254,95 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
             arrayProducts.add(model)
         }
 
+        cursor.close()
         return arrayProducts
     }
 
     fun singleProduct(productId: Int) : ProductModel {
 
         val sqLiteDatabase = this.readableDatabase
-        var cursor : Cursor
-        var query: String = "SELECT * FROM products where ID=$productId"
 
-        try {
-            cursor = sqLiteDatabase.rawQuery(query, null)
+        val query = "SELECT * FROM products where ID=$productId"
+
+        val cursor = try {
+            sqLiteDatabase.rawQuery(query, null)
         }catch (e:Exception) {
             arrangeDatabase(sqLiteDatabase)
-            cursor = sqLiteDatabase.rawQuery(query, null)
+            sqLiteDatabase.rawQuery(query, null)
         }
-        cursor.moveToFirst();
-        var product : ProductModel = ProductModel(cursor.getInt(0),
+        cursor.moveToFirst()
+        val product = ProductModel(cursor.getInt(0),
             cursor.getString(1),
             cursor.getString(2),
             cursor.getString(3),
             cursor.getInt(4),
             cursor.getInt(5),
             cursor.getInt(6))
+        cursor.close()
+
+        return product
+    }
+
+    fun productTutorial(productId: Int = 0, type : TutorialType) : ArrayList<TutorialModel> {
+        var query = "SELECT * FROM tutorials"
+
+        if (productId != 0 ){
+            query += " where productId = $productId"
+            query += when(type){
+                TutorialType.VIDEO -> " and isVideo=true"
+                TutorialType.READABLE -> " and isVideo=false"
+            }
+
+        }
+
+        val tutorials = ArrayList<TutorialModel>()
+        val sqLiteDatabase = this.readableDatabase
+
+        val cursor = try {
+            sqLiteDatabase.rawQuery(query, null)
+        }catch (e:Exception) {
+            arrangeDatabase(sqLiteDatabase)
+            sqLiteDatabase.rawQuery(query, null)
+        }
+
+        while (cursor.moveToNext()) {
+
+            val model = TutorialModel(
+                id = cursor.getInt(0),
+                title = cursor.getString(1),
+                image = cursor.getString(2),
+                description = cursor.getString(3),
+                isVideo = cursor.getInt(4) != 1,
+                productId = cursor.getInt(5)
+            )
+            tutorials.add(model)
+
+        }
+
+        cursor.close()
+        return tutorials
+    }
+
+    fun singleTutorial(tutorialId : Int) : ProductModel {
+        val sqLiteDatabase = this.readableDatabase
+
+        val query = "SELECT * FROM products where ID=$tutorialId"
+
+        val cursor = try {
+            sqLiteDatabase.rawQuery(query, null)
+        }catch (e:Exception) {
+            arrangeDatabase(sqLiteDatabase)
+            sqLiteDatabase.rawQuery(query, null)
+        }
+        cursor.moveToFirst()
+        val product = ProductModel(cursor.getInt(0),
+            cursor.getString(1),
+            cursor.getString(2),
+            cursor.getString(3),
+            cursor.getInt(4),
+            cursor.getInt(5),
+            cursor.getInt(6))
+        cursor.close()
 
         return product
     }
@@ -250,12 +350,60 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
+    fun syncProductLike(productId: Int): Boolean {
+        val sqliteDatabase = this.writableDatabase
+        if (isProductLiked(productId)) {
+            return deleteLikeProduct(productId)
+        }
+        val values = contentValuesOf().apply {
+            put("productId", productId)
+        }
+        val newRowId = sqliteDatabase.insert("liked_products",null, values)
+        return newRowId.toInt() != -1
+    }
 
-
-    fun test() : String{
+    fun likedProducts() : ArrayList<ProductModel> {
         val sqLiteDatabase = this.readableDatabase
-        return """working"""
-//        val cursor = sqLiteDatabase.execSQL("SELECT * FROM companies")
-//        return cursor.toString()
+        val cursor = sqLiteDatabase.rawQuery("SELECT * from products inner join liked_products on products.id=liked_products.productId", null)
+        val products = ArrayList<ProductModel>()
+        while (cursor.moveToNext()) {
+            val model = ProductModel(cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getInt(4),
+                cursor.getInt(5),
+                cursor.getInt(6)
+            )
+
+            products.add(model)
+        }
+        cursor.close()
+        return products
+    }
+
+    fun deleteLikeProduct(productId : Int) : Boolean {
+        val sqliteDatabase = this.writableDatabase
+        val deletedRaws = sqliteDatabase.delete("liked_products", "productId = ?", arrayOf(productId.toString()))
+        return deletedRaws != 0
+    }
+
+    fun isProductLiked(productId: Int) : Boolean {
+        val sqliteDatabase = this.readableDatabase
+        val cursor = sqliteDatabase.rawQuery("Select * from liked_products where productId=$productId", null)
+        return cursor.count > 0
+    }
+    private fun insertTutorial(db: SQLiteDatabase?) {
+        db?.execSQL( """Insert into tutorials(title, image, description, isVideo, productId) values 
+            ("How do you use a dash button?", "N/A", "Dash Buttons are about the size of a pack of gum. You can stick them around your house using the adhesive on the back or the included clip. Once you set them up, they connect to your home Wi-Fi and order the products you've specified when you press them. Amazon sells dozens of Dash Buttons for various brands.\n
+                Full Tutorial:\nAmazon Dash was a consumer goods ordering service which uses proprietary devices and APIs for ordering goods over the Internet.
+                Amazon Dash consisted of multiple components, which include:
+                the Amazon Dash Wand, a Wi-Fi connected barcode scanner and voice command device, used to reorder consumer goods around the house, integrating with AmazonFresh;
+                the Amazon Dash Button, a small consumer electronic device that can be placed around the house and programmed to order a consumer goods such as disinfectant wipes or paper towels; 
+                the Amazon Dash Replenishment Service, which allows manufacturers to add a physical button or auto-detection capability to their devices to reorder supplies from Amazon when necessary.
+                Amazon Virtual Dash Buttons, which mimic the appearance and function of physical Dash Buttons but are displayed on Amazon's website and some smart devices with displays.\n\nAlternative use\nIn August 2015, within a week of the first shipment of Dash buttons to Amazon Prime members, Popular Mechanics reported that it had already been reprogrammed for use as a push-button data tracker. Computer scientist Edward Benson published instructions online to turn it into a wireless spreadsheet entry device, or a trigger for any other API endpoint. The approach was based on hijacking and re-routing the button's network connection with Amazon's servers.\n
+                By May 2016, Consumers' Research pointed out that Amazon Dash was being reprogrammed to use for other purposes such as ordering pizza, tracking time, and controlling lights and outlets in households configured to respond to such commands. In response, Amazon introduced a" 
+                , 0, 1)
+            """)
     }
 }

@@ -1,6 +1,9 @@
 package com.example.i_am_open
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -8,15 +11,13 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toolbar
+import android.widget.*
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import kotlin.math.log
 import kotlin.properties.Delegates
 
@@ -45,6 +46,20 @@ class ProductDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.productName).text = product.name
         view.findViewById<TextView>(R.id.productDescription).text = product.description
 
+        val likeButton = view.findViewById<ImageButton>(R.id.btn_like)
+
+        if (databaseHelper.isProductLiked(productId)) likeButton.setImageResource(R.drawable.heart) else likeButton.setImageResource(R.drawable.favorite_border)
+
+
+        likeButton.setOnClickListener {
+            likeButton.isClickable = false
+            databaseHelper.syncProductLike(productId)
+
+            if (databaseHelper.isProductLiked(productId)) likeButton.setImageResource(R.drawable.heart) else likeButton.setImageResource(R.drawable.favorite_border)
+
+            likeButton.isClickable = true
+
+        }
         view.findViewById<TextView>(R.id.productVideoButton).setOnClickListener {
             val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductVideoGuideFragment()
             view.findNavController().navigate(action)
@@ -53,18 +68,11 @@ class ProductDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.productLegalButton).setOnClickListener {
             val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductLegalFragment()
             view.findNavController().navigate(action)
-//            view.findNavController().navigate(R.id.action_productDetailFragment_to_productLegalFragment)
         }
 
-        val title1 = view.findViewById<TextView>(R.id.tutorialTitle1)
-        val title2 = view.findViewById<TextView>(R.id.tutorialTitle2)
 
-        title1.setOnClickListener {
-            view.findNavController().navigate(R.id.action_productDetailFragment_to_productTutorialFragment)
-        }
-        title1.setOnClickListener {
-            view.findNavController().navigate(R.id.action_productDetailFragment_to_productTutorialFragment)
-        }
+        // TODO: list tutorials for the product
+
 
         return view
 

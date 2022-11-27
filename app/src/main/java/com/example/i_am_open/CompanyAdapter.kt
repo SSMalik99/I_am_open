@@ -18,6 +18,7 @@ class CompanyAdapter(private val myContext: Context,
         val inflater: LayoutInflater = LayoutInflater.from(myContext)
         val view: View =  inflater.inflate(R.layout.company_list_item, null)
         val imageView: ImageView = view.findViewById(R.id.companyImage)
+
         val name: TextView = view.findViewById(R.id.companyName)
         val description: TextView = view.findViewById(R.id.companyDescription)
 

@@ -63,12 +63,14 @@ class CompanyFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
-        myContext = container?.context
+
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_company, container, false)
+        myContext = view.context
+
         databaseHelper = DatabaseHelper(myContext!!)
-        Log.i("database Info-----",databaseHelper.test())
+
         companies = databaseHelper.allCompanies()
         return view
     }
