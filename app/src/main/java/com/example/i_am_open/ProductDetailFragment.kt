@@ -16,7 +16,10 @@ import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.i_am_open.adapters.TutorialAdapter
 import com.google.android.material.button.MaterialButton
 import kotlin.math.log
 import kotlin.properties.Delegates
@@ -60,6 +63,7 @@ class ProductDetailFragment : Fragment() {
             likeButton.isClickable = true
 
         }
+
         view.findViewById<TextView>(R.id.productVideoButton).setOnClickListener {
             val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductVideoGuideFragment()
             view.findNavController().navigate(action)
@@ -71,7 +75,11 @@ class ProductDetailFragment : Fragment() {
         }
 
 
-        // TODO: list tutorials for the product
+        val recyclerView  = view.findViewById<RecyclerView>(R.id.tutorialListView)
+        recyclerView.layoutManager = LinearLayoutManager(view.context)
+        val tutorials = databaseHelper.productTutorial(productId, TutorialType.READABLE)
+        val tutorialAdapter = TutorialAdapter(view.context, tutorials)
+        recyclerView.adapter = tutorialAdapter
 
 
         return view

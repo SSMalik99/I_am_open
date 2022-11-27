@@ -322,10 +322,10 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         return tutorials
     }
 
-    fun singleTutorial(tutorialId : Int) : ProductModel {
+    fun singleTutorial(tutorialId : Int) : TutorialModel {
         val sqLiteDatabase = this.readableDatabase
 
-        val query = "SELECT * FROM products where ID=$tutorialId"
+        val query = "SELECT * FROM tutorials where ID=$tutorialId"
 
         val cursor = try {
             sqLiteDatabase.rawQuery(query, null)
@@ -334,16 +334,17 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
             sqLiteDatabase.rawQuery(query, null)
         }
         cursor.moveToFirst()
-        val product = ProductModel(cursor.getInt(0),
+        val tutorial = TutorialModel(
+            cursor.getInt(0),
             cursor.getString(1),
             cursor.getString(2),
             cursor.getString(3),
-            cursor.getInt(4),
+            cursor.getInt(4) == 1,
             cursor.getInt(5),
-            cursor.getInt(6))
+            )
         cursor.close()
 
-        return product
+        return tutorial
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -394,14 +395,18 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     }
     private fun insertTutorial(db: SQLiteDatabase?) {
         db?.execSQL( """Insert into tutorials(title, image, description, isVideo, productId) values 
-            ("How do you use a dash button?", "N/A", "Dash Buttons are about the size of a pack of gum. You can stick them around your house using the adhesive on the back or the included clip. Once you set them up, they connect to your home Wi-Fi and order the products you've specified when you press them. Amazon sells dozens of Dash Buttons for various brands.\n
-                Full Tutorial:\nAmazon Dash was a consumer goods ordering service which uses proprietary devices and APIs for ordering goods over the Internet.
-                Amazon Dash consisted of multiple components, which include:
-                the Amazon Dash Wand, a Wi-Fi connected barcode scanner and voice command device, used to reorder consumer goods around the house, integrating with AmazonFresh;
-                the Amazon Dash Button, a small consumer electronic device that can be placed around the house and programmed to order a consumer goods such as disinfectant wipes or paper towels; 
-                the Amazon Dash Replenishment Service, which allows manufacturers to add a physical button or auto-detection capability to their devices to reorder supplies from Amazon when necessary.
-                Amazon Virtual Dash Buttons, which mimic the appearance and function of physical Dash Buttons but are displayed on Amazon's website and some smart devices with displays.\n\nAlternative use\nIn August 2015, within a week of the first shipment of Dash buttons to Amazon Prime members, Popular Mechanics reported that it had already been reprogrammed for use as a push-button data tracker. Computer scientist Edward Benson published instructions online to turn it into a wireless spreadsheet entry device, or a trigger for any other API endpoint. The approach was based on hijacking and re-routing the button's network connection with Amazon's servers.\n
-                By May 2016, Consumers' Research pointed out that Amazon Dash was being reprogrammed to use for other purposes such as ordering pizza, tracking time, and controlling lights and outlets in households configured to respond to such commands. In response, Amazon introduced a" 
+            ("How do you use a dash button?", "N/A", 
+"Dash Buttons are about the size of a pack of gum. You can stick them around your house using the adhesive on the back or the included clip. Once you set them up, they connect to your home Wi-Fi and order the products you've specified when you press them. Amazon sells dozens of Dash Buttons for various brands.
+Full Tutorial:
+    Amazon Dash was a consumer goods ordering service which uses proprietary devices and APIs for ordering goods over the Internet.
+Amazon Dash consisted of multiple components, which include:
+    the Amazon Dash Wand, a Wi-Fi connected barcode scanner and voice command device, used to reorder consumer goods around the house, integrating with AmazonFresh;
+    the Amazon Dash Button, a small consumer electronic device that can be placed around the house and programmed to order a consumer goods such as disinfectant wipes or paper towels; 
+    the Amazon Dash Replenishment Service, which allows manufacturers to add a physical button or auto-detection capability to their devices to reorder supplies from Amazon when necessary.
+    Amazon Virtual Dash Buttons, which mimic the appearance and function of physical Dash Buttons but are displayed on Amazon's website and some smart devices with displays.
+Alternative use
+    In August 2015, within a week of the first shipment of Dash buttons to Amazon Prime members, Popular Mechanics reported that it had already been reprogrammed for use as a push-button data tracker. Computer scientist Edward Benson published instructions online to turn it into a wireless spreadsheet entry device, or a trigger for any other API endpoint. The approach was based on hijacking and re-routing the button's network connection with Amazon's servers.
+    By May 2016, Consumers' Research pointed out that Amazon Dash was being reprogrammed to use for other purposes such as ordering pizza, tracking time, and controlling lights and outlets in households configured to respond to such commands. In response, Amazon introduced a" 
                 , 0, 1)
             """)
     }
