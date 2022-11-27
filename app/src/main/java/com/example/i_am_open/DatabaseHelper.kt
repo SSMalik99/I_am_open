@@ -292,7 +292,6 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
                 TutorialType.VIDEO -> " and isVideo=true"
                 TutorialType.READABLE -> " and isVideo=false"
             }
-
         }
 
         val tutorials = ArrayList<TutorialModel>()
