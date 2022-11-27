@@ -60,7 +60,18 @@
         android:id="@+id/favouriteFragment"
         android:name="com.example.i_am_open.FavouriteFragment"
         android:label="Favourite Product"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment"
+            >
+            <argument
+                android:name="id"
+                app:argType="integer"
+                android:defaultValue="1"
+                />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.i_am_open.ProfileFragment"
@@ -87,6 +98,7 @@
             android:id="@+id/action_productDetailFragment_to_productTutorialFragment2"
             app:destination="@id/productTutorialFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/companyDetailsFragment"
         android:name="com.example.i_am_open.CompanyDetailsFragment"

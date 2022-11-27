@@ -6,9 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".FavouriteFragment">
 
-    <ListView
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/favouriteProductListContainer"/>
+        android:textStyle="bold"
+        android:textSize="50dp"
+        android:lineHeight="50dp"
+        android:id="@+id/noneFavouriteProduct"
+        android:visibility="gone"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/emptyLikedProducts"/>
+
+    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </view>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/favouriteFragmentRecyclerView"
+        android:layout_height="match_parent"
+
+        android:layout_marginBottom="20dp"/>
+
+    <!--    <ListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/favouriteProductListContainer"/>-->
 
 </FrameLayout>
