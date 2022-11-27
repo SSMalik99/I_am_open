@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import androidx.core.content.contentValuesOf
 import java.lang.Exception
 import kotlin.collections.ArrayList
 
@@ -20,9 +21,27 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
     }
 
-    fun companyProduct(companyId: Int) {
+    fun companyProduct(companyId: Int) : ArrayList<ProductModel> {
         val sqliteHelper = this.writableDatabase
-        var execSQL = sqliteHelper.rawQuery("SELECT * from products where companyId=$companyId", null)
+        var cursor = sqliteHelper.rawQuery("SELECT * from products where companyId=$companyId", null)
+
+        val products = ArrayList<ProductModel>()
+        while (cursor.moveToNext()){
+            val model = ProductModel(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getInt(4),
+                cursor.getInt(5),
+                cursor.getInt(6)
+            )
+
+            products.add(model)
+        }
+
+        cursor.close()
+        return products
 
     }
 
@@ -30,13 +49,15 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         val sqliteDatbase = this.writableDatabase
         val cursor = sqliteDatbase.rawQuery("SELECT * FROM companies where ID= $companyId", null)
         cursor.moveToFirst()
-        cursor.close()
+
         return CompanyModel(
             cursor.getInt(0),
             cursor.getString(1),
             cursor.getString(2),
             cursor.getString(3)
         )
+
+        cursor.close()
 
     }
 
@@ -56,6 +77,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         db?.execSQL("CREATE TABLE products(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, image TEXT, description TEXT,upVote INTEGER, downVote Integer, companyId INTEGER, FOREIGN KEY(companyId) REFERENCES companies(id));")
         db?.execSQL("CREATE TABLE tutorials(ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, image TEXT, description TEXT, isVideo INTEGER, productId INTEGER, FOREIGN KEY(productId) REFERENCES products(id));")
         db?.execSQL("CREATE TABLE product_precautions(ID INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, productId INTEGER, FOREIGN KEY(productId) REFERENCES products(id));")
+        db?.execSQL("CREATE TABLE liked_products(ID INTEGER PRIMARY KEY AUTOINCREMENT, productId Integer, FOREIGN KEY(productId) REFERENCES products(id));")
     }
 
     private fun dropTables(db: SQLiteDatabase?) {
@@ -63,6 +85,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         db?.execSQL("Drop Table if exists products")
         db?.execSQL("Drop Table if exists tutorials")
         db?.execSQL("Drop Table if exists product_precautions")
+        db?.execSQL("Drop Table if exists liked_products")
     }
 
     private fun insertCompanies(db: SQLiteDatabase?) {
@@ -77,6 +100,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     }
 
     private  fun insertProducts(db : SQLiteDatabase?) {
+
         db?.execSQL("""insert into products values 
           (1, 
             "Amazon Dash Button", 
@@ -320,15 +344,50 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
         return product
     }
+
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
+    fun insertProductLike(productId: Int): Boolean {
+        val sqliteDatabase = this.writableDatabase
+        val values = contentValuesOf().apply {
+            put("productId", productId)
+        }
+        val newRowId = sqliteDatabase.insert("liked_products",null, values)
+        return newRowId.toInt() != -1
+    }
 
+    fun likedProducts() : ArrayList<ProductModel> {
+        val sqLiteDatabase = this.readableDatabase
+        val cursor = sqLiteDatabase.rawQuery("SELECT * from products inner join liked_products on products.id=liked_products.productId", null)
+        val products = ArrayList<ProductModel>()
+        while (cursor.moveToNext()) {
+            val model = ProductModel(cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getInt(4),
+                cursor.getInt(5),
+                cursor.getInt(6)
+            )
 
-    fun test() : String{
-//        val sqLiteDatabase = this.readableDatabase
-        return """working"""
-//        val cursor = sqLiteDatabase.execSQL("SELECT * FROM companies")
-//        return cursor.toString()
+            products.add(model)
+        }
+        cursor.close()
+        return products
+    }
+
+    private fun insertTutorial(db: SQLiteDatabase?) {
+        db?.execSQL( """Insert into tutorials(title, image, description, isVideo, productId) values 
+            ("How do you use a dash button?", "Dash Buttons are about the size of a pack of gum. You can stick them around your house using the adhesive on the back or the included clip. Once you set them up, they connect to your home Wi-Fi and order the products you've specified when you press them. Amazon sells dozens of Dash Buttons for various brands.\n
+                Full Tutorial:\nAmazon Dash was a consumer goods ordering service which uses proprietary devices and APIs for ordering goods over the Internet.
+                Amazon Dash consisted of multiple components, which include:
+                the Amazon Dash Wand, a Wi-Fi connected barcode scanner and voice command device, used to reorder consumer goods around the house, integrating with AmazonFresh;
+                the Amazon Dash Button, a small consumer electronic device that can be placed around the house and programmed to order a consumer goods such as disinfectant wipes or paper towels; 
+                the Amazon Dash Replenishment Service, which allows manufacturers to add a physical button or auto-detection capability to their devices to reorder supplies from Amazon when necessary.
+                Amazon Virtual Dash Buttons, which mimic the appearance and function of physical Dash Buttons but are displayed on Amazon's website and some smart devices with displays.\n\nAlternative use\nIn August 2015, within a week of the first shipment of Dash buttons to Amazon Prime members, Popular Mechanics reported that it had already been reprogrammed for use as a push-button data tracker. Computer scientist Edward Benson published instructions online to turn it into a wireless spreadsheet entry device, or a trigger for any other API endpoint. The approach was based on hijacking and re-routing the button's network connection with Amazon's servers.\n
+                By May 2016, Consumers' Research pointed out that Amazon Dash was being reprogrammed to use for other purposes such as ordering pizza, tracking time, and controlling lights and outlets in households configured to respond to such commands. In response, Amazon introduced a" 
+                )
+            """)
     }
 }
