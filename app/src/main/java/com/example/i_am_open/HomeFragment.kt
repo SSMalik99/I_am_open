@@ -31,40 +31,8 @@ class HomeFragment : Fragment() {
     )
 
     lateinit var databaseHelper : DatabaseHelper
-    val productNames = arrayOf<String>(
-        "Samsung Memory Expander",
-        "Adobe Illustrator",
-        "Canon Printer",
-        "Drone With Camera",
-        "Meta VR Set",
-        "Hoverboard"
-    )
-
-    val productRequestNumbers = arrayOf<Int>(
-        100, 50, 25, 40, 50, 30
-    )
-
-    val productVotes = arrayOf<Int>(
-        100, 50, 25, 40, 50, 30
-    )
-
-    var productIds =  ArrayList<Int>()
-    var productList = ArrayList<RecentlyViewedProduct>()
     var myContext: Context? = null
-
-    fun populateProducts() {
-        productList = arrayListOf<RecentlyViewedProduct>()
-        productIds =  arrayListOf<Int>()
-        for (i in productNames.indices) {
-            productIds.add(i+1)
-            val product = RecentlyViewedProduct(
-                i+1,
-                productImages[i], productNames[i],
-                productRequestNumbers[i], productVotes[i]
-            )
-            productList.add(product)
-        }
-    }
+    var products = ArrayList<ProductModel>()
 
 
     override fun onCreateView(
@@ -76,8 +44,7 @@ class HomeFragment : Fragment() {
 
         databaseHelper = DatabaseHelper(myContext!!)
         val companies: ArrayList<CompanyModel> = databaseHelper.allCompanies()
-//        val products: ArrayList
-
+        products = databaseHelper.allProducts()
 
         viewAllBtn.setOnClickListener {
             view.findNavController().navigate(R.id.action_homeFragment_to_companyFragment)
@@ -85,16 +52,13 @@ class HomeFragment : Fragment() {
 
         return view
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        populateProducts()
-
         val listView = view.findViewById<ListView>(R.id.productListView)
-        listView.adapter = activity?.let { HomeAdapter(it, productList) }
+        listView.adapter = activity?.let { HomeAdapter(it, products) }
         listView.setOnItemClickListener(){adapterView, view, position, id ->
-            val id = productIds[position]
-
-
+            val id = products[position]?.id
             val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
 //            view.performAccessibilityAction(R.id.action_homeFragment_to_productDetailFragment, id)
             listView.findNavController().navigate(action)
