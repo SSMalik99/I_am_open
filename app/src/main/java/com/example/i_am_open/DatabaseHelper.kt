@@ -3,18 +3,10 @@ package com.example.i_am_open
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
 import java.lang.Exception
-import java.sql.SQLException
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
+
 
 
 class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
@@ -165,19 +157,19 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     }
 
     fun allCompanies(): ArrayList<CompanyModel> {
-        var arrayCompanies : ArrayList<CompanyModel> = ArrayList<CompanyModel>()
+        val arrayCompanies = ArrayList<CompanyModel>()
         val sqLiteDatabase = this.readableDatabase
-        var cursor : Cursor
 
-        try {
-            cursor = sqLiteDatabase.rawQuery("Select * from companies", null)
+
+        val cursor = try {
+            sqLiteDatabase.rawQuery("Select * from companies", null)
         }catch (e:Exception) {
             arrangeDatabase(sqLiteDatabase)
-            cursor = sqLiteDatabase.rawQuery("Select * from companies", null)
+            sqLiteDatabase.rawQuery("Select * from companies", null)
         }
 
         while (cursor.moveToNext()) {
-            var model : CompanyModel = CompanyModel(
+            val model = CompanyModel(
                 cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
@@ -186,28 +178,29 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
             arrayCompanies.add(model)
         }
+        cursor.close()
 
         return arrayCompanies
     }
 
     fun allProducts(companyId: Int = 0) : ArrayList<ProductModel> {
-        var arrayProducts : ArrayList<ProductModel> = ArrayList<ProductModel>()
+        val arrayProducts = ArrayList<ProductModel>()
         val sqLiteDatabase = this.readableDatabase
-        var cursor : Cursor
+
         var queryString = "SELECT * FROM products"
         if (companyId != 0) {
             queryString += " WHERE companyId=$companyId"
         }
 
-        try {
-            cursor = sqLiteDatabase.rawQuery(queryString, null)
+        val cursor = try {
+            sqLiteDatabase.rawQuery(queryString, null)
         }catch (e:Exception) {
             arrangeDatabase(sqLiteDatabase)
-            cursor = sqLiteDatabase.rawQuery(queryString, null)
+            sqLiteDatabase.rawQuery(queryString, null)
         }
 
         while (cursor.moveToNext()) {
-            var model : ProductModel = ProductModel(
+            val model = ProductModel(
                 cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
@@ -220,40 +213,105 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
             arrayProducts.add(model)
         }
 
+        cursor.close()
         return arrayProducts
     }
 
     fun singleProduct(productId: Int) : ProductModel {
 
         val sqLiteDatabase = this.readableDatabase
-        var cursor : Cursor
-        var query: String = "SELECT * FROM products where ID=$productId"
 
-        try {
-            cursor = sqLiteDatabase.rawQuery(query, null)
+        val query = "SELECT * FROM products where ID=$productId"
+
+        val cursor = try {
+            sqLiteDatabase.rawQuery(query, null)
         }catch (e:Exception) {
             arrangeDatabase(sqLiteDatabase)
-            cursor = sqLiteDatabase.rawQuery(query, null)
+            sqLiteDatabase.rawQuery(query, null)
         }
-        cursor.moveToFirst();
-        var product : ProductModel = ProductModel(cursor.getInt(0),
+        cursor.moveToFirst()
+        val product = ProductModel(cursor.getInt(0),
             cursor.getString(1),
             cursor.getString(2),
             cursor.getString(3),
             cursor.getInt(4),
             cursor.getInt(5),
             cursor.getInt(6))
+        cursor.close()
 
         return product
     }
 
+    fun productTutorial(productId: Int = 0, type : TutorialType) : ArrayList<TutorialModel> {
+        var query = "SELECT * FROM tutorials"
+
+        if (productId != 0 ){
+            query += " where productId = $productId"
+            query += when(type){
+                TutorialType.VIDEO -> " and isVideo=true"
+                TutorialType.READABLE -> " and isVideo=false"
+            }
+
+        }
+
+        val tutorials = ArrayList<TutorialModel>()
+        val sqLiteDatabase = this.readableDatabase
+
+        val cursor = try {
+            sqLiteDatabase.rawQuery(query, null)
+        }catch (e:Exception) {
+            arrangeDatabase(sqLiteDatabase)
+            sqLiteDatabase.rawQuery(query, null)
+        }
+
+        while (cursor.moveToNext()) {
+
+            val model = TutorialModel(
+                id = cursor.getInt(0),
+                title = cursor.getString(1),
+                image = cursor.getString(2),
+                description = cursor.getString(3),
+                isVideo = cursor.getInt(4) != 1,
+                productId = cursor.getInt(5)
+            )
+            tutorials.add(model)
+
+        }
+
+        cursor.close()
+        return tutorials
+    }
+
+    fun singleTutorial(tutorialId : Int) : ProductModel {
+        val sqLiteDatabase = this.readableDatabase
+
+        val query = "SELECT * FROM products where ID=$tutorialId"
+
+        val cursor = try {
+            sqLiteDatabase.rawQuery(query, null)
+        }catch (e:Exception) {
+            arrangeDatabase(sqLiteDatabase)
+            sqLiteDatabase.rawQuery(query, null)
+        }
+        cursor.moveToFirst()
+        val product = ProductModel(cursor.getInt(0),
+            cursor.getString(1),
+            cursor.getString(2),
+            cursor.getString(3),
+            cursor.getInt(4),
+            cursor.getInt(5),
+            cursor.getInt(6))
+        cursor.close()
+
+        return product
+    }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
 
 
     fun test() : String{
-        val sqLiteDatabase = this.readableDatabase
+//        val sqLiteDatabase = this.readableDatabase
         return """working"""
 //        val cursor = sqLiteDatabase.execSQL("SELECT * FROM companies")
 //        return cursor.toString()
