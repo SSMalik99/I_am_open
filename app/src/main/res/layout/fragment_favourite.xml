@@ -29,7 +29,7 @@
         android:id="@+id/favouriteFragmentRecyclerView"
         android:layout_height="match_parent"
 
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="40dp"/>
 
     <!--    <ListView-->
 <!--        android:layout_width="match_parent"-->

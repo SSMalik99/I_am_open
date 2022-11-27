@@ -59,6 +59,8 @@
 
 <!--    Recently Launched Item -->
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginBottom="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -69,14 +71,15 @@
             android:paddingBottom="16dp"
             android:text="@string/recently_launched"
             android:textSize="18sp" />
+
+        <!--    Product List -->
+        <ListView
+            android:id="@+id/productListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/home_list_item"/>
     </LinearLayout>
 
-<!--    Product List -->
-    <ListView
-        android:id="@+id/productListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/home_list_item"/>
 
 </LinearLayout>
 

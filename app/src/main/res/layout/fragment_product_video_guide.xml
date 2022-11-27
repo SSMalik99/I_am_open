@@ -8,57 +8,14 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center_horizontal"
-    tools:context=".ProductDetailFragment"
-    >
+    tools:context=".ProductDetailFragment">
 
-
-    <TextView
-        android:id="@+id/textView7"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Johon doe's tutorial"
-        android:layout_margin="5dp"
-        android:textStyle="bold"/>
+        android:id="@+id/videoTutorialRecycleView"
+        android:layout_height="match_parent"
 
-    <VideoView
-        android:id="@+id/videoView1"
-        android:layout_width="421dp"
-        android:layout_height="202dp"/>
+        android:layout_marginBottom="40dp"/>
 
-    <TextView
-        android:id="@+id/videotitle1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Watch the latest video guide by John Doe "
-        android:textStyle="bold"
-        android:layout_margin="5dp"/>
-
-    <TextView
-        android:id="@+id/videodetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="use some simple description about the video and other things can go here."
-        android:layout_margin="5dp"/>
-
-    <VideoView
-        android:id="@+id/videoView4"
-        android:layout_width="match_parent"
-        android:layout_height="194dp" />
-
-    <TextView
-        android:id="@+id/vediotitle2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Watch the latest video guide by John Doe"
-        android:textStyle="bold"
-        android:layout_margin="5dp"/>
-
-    <TextView
-        android:id="@+id/videodetails2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="use some simple description about the video and other things can go here."
-
-        android:layout_margin="5dp"/>
 </LinearLayout>
 
