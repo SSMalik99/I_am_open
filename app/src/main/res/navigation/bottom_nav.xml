@@ -95,5 +95,8 @@
             android:name="id"
             app:argType="integer"
             android:defaultValue="1" />
+        <action
+            android:id="@+id/action_companyDetailsFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
 </navigation>
