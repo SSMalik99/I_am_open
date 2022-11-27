@@ -5,19 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.i_am_open.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
