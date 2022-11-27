@@ -19,16 +19,18 @@ class CompanyDetailsFragment : Fragment() {
 
     private var companyId : Int = 0
     lateinit var databaseHelper : DatabaseHelper
-    var myContext: Context? = null
-    var products = ArrayList<ProductModel>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         companyId = arguments?.getInt("id")!!
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+    var products = ArrayList<ProductModel>()
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    {
         val view = inflater.inflate(R.layout.fragment_company_details, container, false)
         databaseHelper = DatabaseHelper(view.context!!)
         val company = databaseHelper.singleCompany(companyId)
@@ -41,11 +43,11 @@ class CompanyDetailsFragment : Fragment() {
         Toast.makeText(activity, id.toString(),
             Toast.LENGTH_LONG).show();
 
-        myContext = container?.context
-        // Inflate the layout for this fragment
-
-        databaseHelper = DatabaseHelper(myContext!!)
-
+//        myContext = container?.context
+//        // Inflate the layout for this fragment
+//
+//        databaseHelper = DatabaseHelper(myContext!!)
+//
         products = databaseHelper.allProducts()
 
 
@@ -63,6 +65,5 @@ class CompanyDetailsFragment : Fragment() {
 
         }
     }
-
 
 }
