@@ -17,7 +17,7 @@ class CompanyDetailsFragment : Fragment() {
 
         // Receive Product Id from home fragment
         val id = CompanyDetailsFragmentArgs.fromBundle(requireArguments()).id
-        Toast.makeText(getActivity(), id.toString(),
+        Toast.makeText(activity, id.toString(),
             Toast.LENGTH_LONG).show();
 
         return view

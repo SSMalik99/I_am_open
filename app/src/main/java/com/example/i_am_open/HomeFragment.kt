@@ -44,6 +44,8 @@ class HomeFragment : Fragment() {
 
         databaseHelper = DatabaseHelper(myContext!!)
         val companies: ArrayList<CompanyModel> = databaseHelper.allCompanies()
+
+
         products = databaseHelper.allProducts()
 
         viewAllBtn.setOnClickListener {
@@ -52,6 +54,9 @@ class HomeFragment : Fragment() {
 
         return view
     }
+//    private fun implementCompanies(compnaie) {
+//
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
