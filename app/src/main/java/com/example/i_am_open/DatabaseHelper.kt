@@ -71,6 +71,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         createTables(db)
         insertCompanies(db)
         insertProducts(db)
+        insertTutorial(db)
     }
 
     private fun createTables(db: SQLiteDatabase?) {
@@ -349,8 +350,11 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
-    fun insertProductLike(productId: Int): Boolean {
+    fun syncProductLike(productId: Int): Boolean {
         val sqliteDatabase = this.writableDatabase
+        if (isProductLiked(productId)) {
+            return deleteLikeProduct(productId)
+        }
         val values = contentValuesOf().apply {
             put("productId", productId)
         }
@@ -378,9 +382,20 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         return products
     }
 
+    fun deleteLikeProduct(productId : Int) : Boolean {
+        val sqliteDatabase = this.writableDatabase
+        val deletedRaws = sqliteDatabase.delete("liked_products", "productId = ?", arrayOf(productId.toString()))
+        return deletedRaws != 0
+    }
+
+    fun isProductLiked(productId: Int) : Boolean {
+        val sqliteDatabase = this.readableDatabase
+        val cursor = sqliteDatabase.rawQuery("Select * from liked_products where productId=$productId", null)
+        return cursor.count > 0
+    }
     private fun insertTutorial(db: SQLiteDatabase?) {
         db?.execSQL( """Insert into tutorials(title, image, description, isVideo, productId) values 
-            ("How do you use a dash button?", "Dash Buttons are about the size of a pack of gum. You can stick them around your house using the adhesive on the back or the included clip. Once you set them up, they connect to your home Wi-Fi and order the products you've specified when you press them. Amazon sells dozens of Dash Buttons for various brands.\n
+            ("How do you use a dash button?", "N/A", "Dash Buttons are about the size of a pack of gum. You can stick them around your house using the adhesive on the back or the included clip. Once you set them up, they connect to your home Wi-Fi and order the products you've specified when you press them. Amazon sells dozens of Dash Buttons for various brands.\n
                 Full Tutorial:\nAmazon Dash was a consumer goods ordering service which uses proprietary devices and APIs for ordering goods over the Internet.
                 Amazon Dash consisted of multiple components, which include:
                 the Amazon Dash Wand, a Wi-Fi connected barcode scanner and voice command device, used to reorder consumer goods around the house, integrating with AmazonFresh;
@@ -388,7 +403,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
                 the Amazon Dash Replenishment Service, which allows manufacturers to add a physical button or auto-detection capability to their devices to reorder supplies from Amazon when necessary.
                 Amazon Virtual Dash Buttons, which mimic the appearance and function of physical Dash Buttons but are displayed on Amazon's website and some smart devices with displays.\n\nAlternative use\nIn August 2015, within a week of the first shipment of Dash buttons to Amazon Prime members, Popular Mechanics reported that it had already been reprogrammed for use as a push-button data tracker. Computer scientist Edward Benson published instructions online to turn it into a wireless spreadsheet entry device, or a trigger for any other API endpoint. The approach was based on hijacking and re-routing the button's network connection with Amazon's servers.\n
                 By May 2016, Consumers' Research pointed out that Amazon Dash was being reprogrammed to use for other purposes such as ordering pizza, tracking time, and controlling lights and outlets in households configured to respond to such commands. In response, Amazon introduced a" 
-                )
+                , 0, 1)
             """)
     }
 }
