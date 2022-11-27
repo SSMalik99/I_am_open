@@ -22,7 +22,22 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
     fun companyProduct(companyId: Int) {
         val sqliteHelper = this.writableDatabase
-        var execSQL = sqliteHelper.execSQL("SELECT * from products where companyId=$companyId")
+        var execSQL = sqliteHelper.rawQuery("SELECT * from products where companyId=$companyId", null)
+
+    }
+
+    fun singleCompany(companyId : Int) : CompanyModel {
+        val sqliteDatbase = this.writableDatabase
+        val cursor = sqliteDatbase.rawQuery("SELECT * FROM companies where ID= $companyId", null)
+        cursor.moveToFirst()
+        cursor.close()
+        return CompanyModel(
+            cursor.getInt(0),
+            cursor.getString(1),
+            cursor.getString(2),
+            cursor.getString(3)
+        )
+
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -53,12 +68,12 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     private fun insertCompanies(db: SQLiteDatabase?) {
 
         db?.execSQL( """Insert into companies values 
-            (1, 'MindTree', 'https://unsplash.com/photos/4t6nCthD0es', 'MindTree is well established company developed in 2003 after the boom of internet After Our Innovation we are continuously modify our technology to provide better product for the world.'),
-            (2, 'InoCoal', 'https://unsplash.com/photos/PdH0H4S6FTM', 'InoCoal is well established company developed in 2006 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
-        (3, 'JrekVi', 'https://unsplash.com/photos/Ub9LkIWxyec', 'Jrekvi is well established company developed in 2005 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
-        (4, '7^2Half', 'https://unsplash.com/photos/fT6-YkB0nfg', '7^2Half(Seven Square 2 half) is a company which provide technological solution better then any other opponent,Clear from its name problem is divided in half portion to find a great solution'),
-        (5, 'Rockery', 'https://unsplash.com/photos/GvPceVqbxm4', 'Rockery started in 2015 most recent company which is dominating in the field of semiconductors.It is providing equal competition to the originally developed companies'),
-        (6, 'Zoriyan', 'https://unsplash.com/photos/1deQbU6DhBg', 'Zoriyan is new child in the era, Launched in 2021 its main focus is to provide solutions for the problem which are mostly underestimated by common people.')""")
+            (1, 'MindTree', 'https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg', 'MindTree is well established company developed in 2003 after the boom of internet After Our Innovation we are continuously modify our technology to provide better product for the world.'),
+            (2, 'InoCoal', 'https://cdn.pixabay.com/photo/2014/01/30/18/26/skyline-255116_1280.jpg', 'InoCoal is well established company developed in 2006 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
+        (3, 'JrekVi', 'https://cdn.pixabay.com/photo/2019/12/02/08/04/city-4667143_1280.jpg', 'Jrekvi is well established company developed in 2005 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
+        (4, '7^2Half', 'https://cdn.pixabay.com/photo/2019/04/20/11/39/japan-4141578_1280.jpg', '7^2Half(Seven Square 2 half) is a company which provide technological solution better then any other opponent,Clear from its name problem is divided in half portion to find a great solution'),
+        (5, 'Rockery', 'https://cdn.pixabay.com/photo/2016/11/29/06/22/buildings-1867772_1280.jpg', 'Rockery started in 2015 most recent company which is dominating in the field of semiconductors.It is providing equal competition to the originally developed companies'),
+        (6, 'Zoriyan', 'https://cdn.pixabay.com/photo/2020/02/27/14/33/building-4884852_1280.jpg', 'Zoriyan is new child in the era, Launched in 2021 its main focus is to provide solutions for the problem which are mostly underestimated by common people.')""")
     }
 
     private  fun insertProducts(db : SQLiteDatabase?) {
