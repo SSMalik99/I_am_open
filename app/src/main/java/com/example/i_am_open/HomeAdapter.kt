@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 
 class HomeAdapter(private val myContext: Context,
-                  private val arrayList: ArrayList<RecentlyViewedProduct>):
-    ArrayAdapter<RecentlyViewedProduct>(myContext, R.layout.home_list_item, arrayList) {
+                  private val arrayList: ArrayList<ProductModel>):
+    ArrayAdapter<ProductModel>(myContext, R.layout.home_list_item, arrayList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater: LayoutInflater = LayoutInflater.from(myContext)
@@ -20,10 +21,10 @@ class HomeAdapter(private val myContext: Context,
         val request: TextView = view.findViewById(R.id.request)
         val count: TextView =  view.findViewById(R.id.count)
 
-        imageView.setImageResource(arrayList[position].imageId)
+        Glide.with(myContext).load(arrayList[position].image).into(imageView);
         name.text = arrayList[position].name
-        request.text = arrayList[position].requestCount.toString()
-        count.text = arrayList[position].voteCount.toString()
+        request.text = arrayList[position].upVote.toString()
+        count.text = arrayList[position].downVote.toString()
 
         return view
     }

@@ -59,6 +59,8 @@ class CompanyFragment : Fragment() {
         }
     }
 
+    var companies = ArrayList<CompanyModel>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         myContext = container?.context
@@ -68,17 +70,16 @@ class CompanyFragment : Fragment() {
 
         databaseHelper = DatabaseHelper(myContext!!)
         Log.i("database Info-----",databaseHelper.test())
-
+        companies = databaseHelper.allCompanies()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        populateCompanies()
         val listView = view.findViewById<ListView>(R.id.companyListView)
-        listView.adapter = activity?.let { CompanyAdapter(it, companyList) }
+        listView.adapter = activity?.let { CompanyAdapter(it, companies) }
         listView.setOnItemClickListener(){adapterView, view, position, id ->
-            val id = companyIds[position]
+            val id = companies[position].id
             val action = CompanyFragmentDirections.actionCompanyFragmentToCompanyDetailsFragment2(id)
             listView.findNavController().navigate(action)
         }
