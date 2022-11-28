@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.i_am_open.adapters.VideoTutorialAdapter
@@ -32,12 +33,15 @@ class ProductVideoGuideFragment : Fragment() {
 //        get videos from the database
         val videoTutorials = databaseHelper.productTutorial(productId, TutorialType.VIDEO)
 
-//        set recycle view and adapter
-        val recycleView = view.findViewById<RecyclerView>(R.id.videoTutorialRecycleView)
-        val videoAdapter = VideoTutorialAdapter(view.context, videoTutorials)
-        recycleView.layoutManager = LinearLayoutManager(view.context)
-        recycleView.adapter = videoAdapter
+        if (videoTutorials.size < 1) {
+            view.findViewById<TextView>(R.id.blankVideoTutorial).visibility = View.VISIBLE
+        }else {
 
+            val recycleView = view.findViewById<RecyclerView>(R.id.videoTutorialRecycleView)
+            val videoAdapter = VideoTutorialAdapter(view.context, videoTutorials)
+            recycleView.layoutManager = LinearLayoutManager(view.context)
+            recycleView.adapter = videoAdapter
+        }
         return view
     }
 
