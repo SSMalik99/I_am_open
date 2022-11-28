@@ -462,7 +462,14 @@ If you don't have a drill or aren't able or allowed to drill holes on the proper
 You'll need a wireless router for installing the video doorbell as it requires Internet access. To complete the process, download the Ring app, and follow the further instructions. You can get the Ring app for iOS and Android. The app is free and lets you access a video stream of what's outside your door.
 Just to note, you don't have to have an existing doorbell to install a Ring one, so that shouldn't deter you from getting one.
 ", 0, 6
-    )""")
+    ), ("N/A", "N/A", "https://www.youtube.com/watch?v=Fw2o31gFqHE", 1, 1),
+    ("N/A", "N/A", "https://www.youtube.com/watch?v=aFYs9zqYpdM", 1, 1),
+    ("N/A", "N/A", "youtube.com/watch?v=dIXjed-MU5I", 1, 1),
+    ("N/A", "N/A", "https://www.youtube.com/watch?v=4_0Jm3WCpOw", 1, 2),
+    ("N/A", "N/A", "https://www.youtube.com/watch?v=egVr3cuP9nQ", 1, 2),
+    ("N/A", "N/A", "https://www.youtube.com/watch?v=aDt3TZSQtPU", 1, 2)
+    """)
+
     }
 
     private fun insertLegallyPrecautions(db : SQLiteDatabase?) {
