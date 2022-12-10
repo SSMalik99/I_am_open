@@ -37,6 +37,7 @@ class ProductLegalFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_product_legal, container, false)
         val databaseHelper = DatabaseHelper(view.context)
+
         val product = databaseHelper.singleProduct(productId)
         val precaution = databaseHelper.getProductPrecaution(productId)
 
