@@ -44,7 +44,6 @@ class ProductDetailFragment : Fragment() {
         databaseHelper = DatabaseHelper(view.context!!)
         val product = databaseHelper.singleProduct(productId)
 
-
         var imageView = view.findViewById<ImageView>(R.id.product_detail_image)
         Glide.with(this).load(product.image).into(imageView);
 

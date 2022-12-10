@@ -352,6 +352,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
+    // Sync product like means if
     fun syncProductLike(productId: Int): Boolean {
         val sqliteDatabase = this.writableDatabase
         if (isProductLiked(productId)) {
@@ -364,6 +365,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         return newRowId.toInt() != -1
     }
 
+    // fetch all the products from the database
     fun likedProducts() : ArrayList<ProductModel> {
         val sqLiteDatabase = this.readableDatabase
         val cursor = sqLiteDatabase.rawQuery("SELECT * from products inner join liked_products on products.id=liked_products.productId", null)
@@ -384,12 +386,14 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         return products
     }
 
+    // delete the product like from the database
     fun deleteLikeProduct(productId : Int) : Boolean {
         val sqliteDatabase = this.writableDatabase
         val deletedRaws = sqliteDatabase.delete("liked_products", "productId = ?", arrayOf(productId.toString()))
         return deletedRaws != 0
     }
 
+    // check whether product is liked or not
     fun isProductLiked(productId: Int) : Boolean {
         val sqliteDatabase = this.readableDatabase
         val cursor = sqliteDatabase.rawQuery("Select * from liked_products where productId=$productId", null)
@@ -397,6 +401,8 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         cursor.close()
         return isLiked
     }
+
+    // insert Tutorials in the database
     private fun insertTutorial(db: SQLiteDatabase?) {
         db?.execSQL( """Insert into tutorials(title, image, description, isVideo, productId) values 
             ("How do you use a dash button?", "N/A", 
@@ -472,6 +478,9 @@ Just to note, you don't have to have an existing doorbell to install a Ring one,
 
     }
 
+
+
+    // Insert Legal precautions in the database
     private fun insertLegallyPrecautions(db : SQLiteDatabase?) {
         db?.execSQL("""Insert into product_precautions (title, description, productId) values 
             ("Legal Precautions",
@@ -738,6 +747,7 @@ interesting.
 """)
     }
 
+    // get the precautions detail for the product from the database
     fun getProductPrecaution(productId: Int): LegalPrecautionInterface {
         val sqliteDatabase = this.readableDatabase
         val cursor = sqliteDatabase.rawQuery("SELECT * From product_precautions where productId= $productId", null)
