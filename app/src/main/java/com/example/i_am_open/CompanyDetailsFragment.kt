@@ -43,7 +43,7 @@ class CompanyDetailsFragment : Fragment() {
         Toast.makeText(activity, id.toString(),
             Toast.LENGTH_LONG).show();
 
-        products = databaseHelper.allProducts()
+        products = databaseHelper.companyProduct(companyId)
 
         return view
     }

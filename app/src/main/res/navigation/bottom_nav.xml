@@ -130,7 +130,7 @@
     <fragment
         android:id="@+id/companyDetailsFragment"
         android:name="com.example.i_am_open.CompanyDetailsFragment"
-        android:label="CompanyDetailsFragment">
+        android:label="Company Details">
         <argument
             android:name="id"
             app:argType="integer"
