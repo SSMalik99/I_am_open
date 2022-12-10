@@ -9,24 +9,25 @@ import java.lang.Exception
 import kotlin.collections.ArrayList
 
 
-
-class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
-    DATABASE_NAME,null,
+class DatabaseHelper(val context: Context) : SQLiteOpenHelper(
+    context,
+    DATABASE_NAME, null,
     DATABASE_VERSION
 ) {
 
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "iamopen.db"
-
     }
 
-    fun companyProduct(companyId: Int) : ArrayList<ProductModel> {
+    // To fetch products based on the company Id
+    fun companyProduct(companyId: Int): ArrayList<ProductModel> {
         val sqliteHelper = this.writableDatabase
-        val cursor = sqliteHelper.rawQuery("SELECT * from products where companyId=$companyId", null)
+        val cursor =
+            sqliteHelper.rawQuery("SELECT * from products where companyId=$companyId", null)
 
         val products = ArrayList<ProductModel>()
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             val model = ProductModel(
                 cursor.getInt(0),
                 cursor.getString(1),
@@ -45,7 +46,8 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
     }
 
-    fun singleCompany(companyId : Int) : CompanyModel {
+    // To fetch the single company data based on the company Id
+    fun singleCompany(companyId: Int): CompanyModel {
         val sqliteDatbase = this.writableDatabase
         val cursor = sqliteDatbase.rawQuery("SELECT * FROM companies where ID= $companyId", null)
         cursor.moveToFirst()
@@ -58,15 +60,13 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         )
         cursor.close()
         return model
-
-
-
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
         arrangeDatabase(db)
     }
 
+    // Code to drop tables -> create tables -> seed initial data in respective tables
     private fun arrangeDatabase(db: SQLiteDatabase?) {
         dropTables(db)
         createTables(db)
@@ -92,20 +92,25 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         db?.execSQL("Drop Table if exists liked_products")
     }
 
+    // To seed companies
     private fun insertCompanies(db: SQLiteDatabase?) {
 
-        db?.execSQL( """Insert into companies values 
+        db?.execSQL(
+            """Insert into companies values 
             (1, 'MindTree', 'https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg', 'MindTree is well established company developed in 2003 after the boom of internet After Our Innovation we are continuously modify our technology to provide better product for the world.'),
             (2, 'InoCoal', 'https://cdn.pixabay.com/photo/2014/01/30/18/26/skyline-255116_1280.jpg', 'InoCoal is well established company developed in 2006 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
         (3, 'JrekVi', 'https://cdn.pixabay.com/photo/2019/12/02/08/04/city-4667143_1280.jpg', 'Jrekvi is well established company developed in 2005 after the boom of internet\n.After Our Innovation we are continuously modify our technology to provide better product for the world.'),
         (4, '7^2Half', 'https://cdn.pixabay.com/photo/2019/04/20/11/39/japan-4141578_1280.jpg', '7^2Half(Seven Square 2 half) is a company which provide technological solution better then any other opponent,Clear from its name problem is divided in half portion to find a great solution'),
         (5, 'Rockery', 'https://cdn.pixabay.com/photo/2016/11/29/06/22/buildings-1867772_1280.jpg', 'Rockery started in 2015 most recent company which is dominating in the field of semiconductors.It is providing equal competition to the originally developed companies'),
-        (6, 'Zoriyan', 'https://cdn.pixabay.com/photo/2020/02/27/14/33/building-4884852_1280.jpg', 'Zoriyan is new child in the era, Launched in 2021 its main focus is to provide solutions for the problem which are mostly underestimated by common people.')""")
+        (6, 'Zoriyan', 'https://cdn.pixabay.com/photo/2020/02/27/14/33/building-4884852_1280.jpg', 'Zoriyan is new child in the era, Launched in 2021 its main focus is to provide solutions for the problem which are mostly underestimated by common people.')"""
+        )
     }
 
-    private  fun insertProducts(db : SQLiteDatabase?) {
+    // To seed products
+    private fun insertProducts(db: SQLiteDatabase?) {
 
-        db?.execSQL("""insert into products values 
+        db?.execSQL(
+            """insert into products values 
           (1, 
             "Amazon Dash Button", 
             "https://i.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI", 
@@ -196,9 +201,11 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
                 "NICE (formerly NICE inContact) is the cloud contact center. NICE CXone™ combines best-in-class Omnichannel Routing, Analytics, Workforce Optimization, Automation and Artificial Intelligence on an Open Cloud Foundation. NICE’s solution empowers organizations to provide exceptional customer experiences by acting smarter and responding faster to consumer expectations. NICE’s DEVone developer program is an extensive partner ecosystem, providing applications from partner companies on the CXexchange marketplace that are designed to integrate with NICE CXone.", 
                 92,11,1
             )
-     """)
+     """
+        )
     }
 
+    // To list all of the companies
     fun allCompanies(): ArrayList<CompanyModel> {
         val arrayCompanies = ArrayList<CompanyModel>()
         val sqLiteDatabase = this.readableDatabase
@@ -206,7 +213,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
         val cursor = try {
             sqLiteDatabase.rawQuery("Select * from companies", null)
-        }catch (e:Exception) {
+        } catch (e: Exception) {
             arrangeDatabase(sqLiteDatabase)
             sqLiteDatabase.rawQuery("Select * from companies", null)
         }
@@ -226,7 +233,8 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         return arrayCompanies
     }
 
-    fun allProducts(companyId: Int = 0) : ArrayList<ProductModel> {
+    // To fetch all of the products within the particular company
+    fun allProducts(companyId: Int = 0): ArrayList<ProductModel> {
         val arrayProducts = ArrayList<ProductModel>()
         val sqLiteDatabase = this.readableDatabase
 
@@ -237,7 +245,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
         val cursor = try {
             sqLiteDatabase.rawQuery(queryString, null)
-        }catch (e:Exception) {
+        } catch (e: Exception) {
             arrangeDatabase(sqLiteDatabase)
             sqLiteDatabase.rawQuery(queryString, null)
         }
@@ -260,7 +268,8 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         return arrayProducts
     }
 
-    fun singleProduct(productId: Int) : ProductModel {
+    // To fetch single product data based on provided product Id
+    fun singleProduct(productId: Int): ProductModel {
 
         val sqLiteDatabase = this.readableDatabase
 
@@ -268,29 +277,32 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
         val cursor = try {
             sqLiteDatabase.rawQuery(query, null)
-        }catch (e:Exception) {
+        } catch (e: Exception) {
             arrangeDatabase(sqLiteDatabase)
             sqLiteDatabase.rawQuery(query, null)
         }
         cursor.moveToFirst()
-        val product = ProductModel(cursor.getInt(0),
+        val product = ProductModel(
+            cursor.getInt(0),
             cursor.getString(1),
             cursor.getString(2),
             cursor.getString(3),
             cursor.getInt(4),
             cursor.getInt(5),
-            cursor.getInt(6))
+            cursor.getInt(6)
+        )
         cursor.close()
 
         return product
     }
 
-    fun productTutorial(productId: Int = 0, type : TutorialType) : ArrayList<TutorialModel> {
+    // To fetch tutorial data of the product base on provided product Id and tutorial type
+    fun productTutorial(productId: Int = 0, type: TutorialType): ArrayList<TutorialModel> {
         var query = "SELECT * FROM tutorials"
 
-        if (productId != 0 ){
+        if (productId != 0) {
             query += " where productId = $productId"
-            query += when(type){
+            query += when (type) {
                 TutorialType.VIDEO -> " and isVideo=1"
                 TutorialType.READABLE -> " and isVideo=0"
             }
@@ -301,7 +313,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
         val cursor = try {
             sqLiteDatabase.rawQuery(query, null)
-        }catch (e:Exception) {
+        } catch (e: Exception) {
             arrangeDatabase(sqLiteDatabase)
             sqLiteDatabase.rawQuery(query, null)
         }
@@ -324,14 +336,15 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         return tutorials
     }
 
-    fun singleTutorial(tutorialId : Int) : TutorialModel {
+    // To fetch a product tutorial base on provided tutorial id
+    fun singleTutorial(tutorialId: Int): TutorialModel {
         val sqLiteDatabase = this.readableDatabase
 
         val query = "SELECT * FROM tutorials where ID=$tutorialId"
 
         val cursor = try {
             sqLiteDatabase.rawQuery(query, null)
-        }catch (e:Exception) {
+        } catch (e: Exception) {
             arrangeDatabase(sqLiteDatabase)
             sqLiteDatabase.rawQuery(query, null)
         }
@@ -343,7 +356,7 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
             cursor.getString(3),
             cursor.getInt(4) == 1,
             cursor.getInt(5),
-            )
+        )
         cursor.close()
 
         return tutorial
@@ -361,17 +374,21 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         val values = contentValuesOf().apply {
             put("productId", productId)
         }
-        val newRowId = sqliteDatabase.insert("liked_products",null, values)
+        val newRowId = sqliteDatabase.insert("liked_products", null, values)
         return newRowId.toInt() != -1
     }
 
     // fetch all the products from the database
-    fun likedProducts() : ArrayList<ProductModel> {
+    fun likedProducts(): ArrayList<ProductModel> {
         val sqLiteDatabase = this.readableDatabase
-        val cursor = sqLiteDatabase.rawQuery("SELECT * from products inner join liked_products on products.id=liked_products.productId", null)
+        val cursor = sqLiteDatabase.rawQuery(
+            "SELECT * from products inner join liked_products on products.id=liked_products.productId",
+            null
+        )
         val products = ArrayList<ProductModel>()
         while (cursor.moveToNext()) {
-            val model = ProductModel(cursor.getInt(0),
+            val model = ProductModel(
+                cursor.getInt(0),
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(3),
@@ -387,16 +404,18 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
     }
 
     // delete the product like from the database
-    fun deleteLikeProduct(productId : Int) : Boolean {
+    fun deleteLikeProduct(productId: Int): Boolean {
         val sqliteDatabase = this.writableDatabase
-        val deletedRaws = sqliteDatabase.delete("liked_products", "productId = ?", arrayOf(productId.toString()))
+        val deletedRaws =
+            sqliteDatabase.delete("liked_products", "productId = ?", arrayOf(productId.toString()))
         return deletedRaws != 0
     }
 
     // check whether product is liked or not
-    fun isProductLiked(productId: Int) : Boolean {
+    fun isProductLiked(productId: Int): Boolean {
         val sqliteDatabase = this.readableDatabase
-        val cursor = sqliteDatabase.rawQuery("Select * from liked_products where productId=$productId", null)
+        val cursor =
+            sqliteDatabase.rawQuery("Select * from liked_products where productId=$productId", null)
         val isLiked = cursor.count > 0
         cursor.close()
         return isLiked
@@ -404,7 +423,8 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
 
     // insert Tutorials in the database
     private fun insertTutorial(db: SQLiteDatabase?) {
-        db?.execSQL( """Insert into tutorials(title, image, description, isVideo, productId) values 
+        db?.execSQL(
+            """Insert into tutorials(title, image, description, isVideo, productId) values 
             ("How do you use a dash button?", "N/A", 
 "Dash Buttons are about the size of a pack of gum. You can stick them around your house using the adhesive on the back or the included clip. Once you set them up, they connect to your home Wi-Fi and order the products you've specified when you press them. Amazon sells dozens of Dash Buttons for various brands.
 Full Tutorial:
@@ -474,15 +494,16 @@ Just to note, you don't have to have an existing doorbell to install a Ring one,
     ("N/A", "N/A", "https://www.youtube.com/watch?v=4_0Jm3WCpOw", 1, 2),
     ("N/A", "N/A", "https://www.youtube.com/watch?v=egVr3cuP9nQ", 1, 2),
     ("N/A", "N/A", "https://www.youtube.com/watch?v=aDt3TZSQtPU", 1, 2)
-    """)
+    """
+        )
 
     }
 
 
-
     // Insert Legal precautions in the database
-    private fun insertLegallyPrecautions(db : SQLiteDatabase?) {
-        db?.execSQL("""Insert into product_precautions (title, description, productId) values 
+    private fun insertLegallyPrecautions(db: SQLiteDatabase?) {
+        db?.execSQL(
+            """Insert into product_precautions (title, description, productId) values 
             ("Legal Precautions",
 "Is the device safe to use and to hook up with your local network or are you opening a box of worms by installing this in your home?
 Unfortunately the Amazon PR team declined to answer our questions even though it previously seemed like they were going to work with us on this report. However we got great insight from industry and adoption experts, which we want to share with you.
@@ -744,15 +765,24 @@ interesting.
 • To customize our website according to your online behavior and personal preferences",
 15
 )
-""")
+"""
+        )
     }
 
     // get the precautions detail for the product from the database
     fun getProductPrecaution(productId: Int): LegalPrecautionInterface {
         val sqliteDatabase = this.readableDatabase
-        val cursor = sqliteDatabase.rawQuery("SELECT * From product_precautions where productId= $productId", null)
+        val cursor = sqliteDatabase.rawQuery(
+            "SELECT * From product_precautions where productId= $productId",
+            null
+        )
         cursor.moveToFirst()
-        val precaution = LegalPrecautionInterface(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getInt(3))
+        val precaution = LegalPrecautionInterface(
+            cursor.getInt(0),
+            cursor.getString(1),
+            cursor.getString(2),
+            cursor.getInt(3)
+        )
         cursor.close()
         return precaution
     }

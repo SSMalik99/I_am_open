@@ -22,7 +22,6 @@ class CompanyAdapter(private val myContext: Context,
         val name: TextView = view.findViewById(R.id.companyName)
         val description: TextView = view.findViewById(R.id.companyDescription)
 
-
         Glide.with(myContext).load(arrayList[position].image).into(imageView)
         name.text = arrayList[position].name
         description.text = arrayList[position].description

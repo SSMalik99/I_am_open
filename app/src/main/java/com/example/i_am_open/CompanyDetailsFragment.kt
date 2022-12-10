@@ -43,13 +43,7 @@ class CompanyDetailsFragment : Fragment() {
         Toast.makeText(activity, id.toString(),
             Toast.LENGTH_LONG).show();
 
-//        myContext = container?.context
-//        // Inflate the layout for this fragment
-//
-//        databaseHelper = DatabaseHelper(myContext!!)
-//
         products = databaseHelper.allProducts()
-
 
         return view
     }
@@ -58,8 +52,12 @@ class CompanyDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val listView = view.findViewById<ListView>(R.id.productListView)
         listView.adapter = activity?.let { HomeAdapter(it, products) }
+
+        // Code to add click listener in each of the item within the product listview
         listView.setOnItemClickListener(){adapterView, view, position, id ->
             val id = products[position]?.id
+
+            // code to navigate to product detail fragment and send product data along with it
             val action = CompanyDetailsFragmentDirections.actionCompanyDetailsFragmentToProductDetailFragment(id)
             listView.findNavController().navigate(action)
 

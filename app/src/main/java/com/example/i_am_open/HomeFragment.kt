@@ -19,11 +19,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment() {
 
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        mContext = context
-//    }
-
     lateinit var databaseHelper : DatabaseHelper
     var myContext: Context? = null
     var products = ArrayList<ProductModel>()
@@ -33,10 +28,12 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myContext = container?.context
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val viewAllBtn = view.findViewById<Button>(R.id.view_all_btn)
 
+        // Code to initialize database helper class
         databaseHelper = DatabaseHelper(myContext!!)
         companies = databaseHelper.allCompanies()
         products = databaseHelper.allProducts()
@@ -52,12 +49,17 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val listView = view.findViewById<ListView>(R.id.productListView)
         listView.adapter = activity?.let { HomeAdapter(it, products) }
+
+        // Code to add click listener to each item within the list view
         listView.setOnItemClickListener(){adapterView, view, position, id ->
             val id = products[position]?.id
+
+            // code to navigate to product detail fragment and send product data along with it
             val action = HomeFragmentDirections.actionHomeFragmentToProductDetailFragment(id)
             listView.findNavController().navigate(action)
         }
 
+        // Use of recycler view to list companies in a horizontal scroll view
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(myContext, RecyclerView.HORIZONTAL, false)
         recyclerView.adapter = CompanyImageListAdapter(companies)

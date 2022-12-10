@@ -44,10 +44,6 @@ class VideoTutorialAdapter(val context: Context, val videos : ArrayList<Tutorial
                 youTubePlayer.cueVideo(videoId, 0f)
             }
         })
-
-
-
-
     }
 
     override fun getItemCount(): Int {

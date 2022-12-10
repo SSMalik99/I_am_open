@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-        //var toolbar =
 
         //Back Button Navigation
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
@@ -31,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
 //        navHostFragment = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
 //        navController = navHostFragment.findNavController()
-
 
         //Bottom navigation
         navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
@@ -53,33 +50,7 @@ class MainActivity : AppCompatActivity() {
             else {
                 bottomNavigationView.visibility = View.GONE
             }
-
-
-            //val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-            //val navController = findNavController(R.id.fragmentContainerView)
-            //bottomNavigationView.setupWithNavController(navController)
-
-            /*
-//        teachers way
-        val builder = AppBarConfiguration.Builder(navController.graph)
-        val appBarConfiguration = builder.build()
-        bottomNavigationView.setupWithNavController(navController)
-         */
-
-            //val appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.companyFragment, R.id.favouriteFragment, R.id.profileFragment))
-            //setupActionBarWithNavController(navController, appBarConfiguration)
         }
-
-//    teacher's way uncomment teachers way in main function to use this
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.bottom_menu, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        val navController = findNavController(R.id.fragmentContainerView)
-//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-//    }
     }
 
     override fun onSupportNavigateUp(): Boolean {

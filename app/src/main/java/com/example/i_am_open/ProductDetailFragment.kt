@@ -41,6 +41,7 @@ class ProductDetailFragment : Fragment() {
     {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_product_detail, container, false)
+
         databaseHelper = DatabaseHelper(view.context!!)
         val product = databaseHelper.singleProduct(productId)
 
@@ -66,11 +67,13 @@ class ProductDetailFragment : Fragment() {
         }
 
         view.findViewById<TextView>(R.id.productVideoButton).setOnClickListener {
+            // code to navigate to product video guide fragment and send product data along with it
             val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductVideoGuideFragment2(productId)
             view.findNavController().navigate(action)
         }
 
         view.findViewById<TextView>(R.id.productLegalButton).setOnClickListener {
+            // code to navigate to product legal fragment and send product data along with it
             val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductLegalFragment2(productId)
             view.findNavController().navigate(action)
         }

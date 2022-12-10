@@ -30,7 +30,7 @@ class ProductVideoGuideFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_product_video_guide, container, false)
         databaseHelper = DatabaseHelper(view.context)
 
-//        get videos from the database
+        //  Get videos from the database
         val videoTutorials = databaseHelper.productTutorial(productId, TutorialType.VIDEO)
 
         if (videoTutorials.size < 1) {

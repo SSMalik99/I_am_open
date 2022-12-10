@@ -21,7 +21,6 @@ class CompanyImageListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        holder.companyImageView.setImageURI(companyList[position].image)
         myContext?.let { Glide.with(it).load(companyList[position].image).into(holder.companyImageView) }
     }
 

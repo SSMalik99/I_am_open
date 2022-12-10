@@ -73,6 +73,7 @@ class TutorialViewHolder(val view: View) :RecyclerView.ViewHolder(view) {
     val tutorialDescription = view.findViewById<TextView>(R.id.tutorialDiscription)!!
 
     init {
+        // Code to navigate and send tutorial data along the navigation
         tutorialTitle.setOnClickListener{
             view.findNavController().navigate(ProductDetailFragmentDirections.actionProductDetailFragmentToProductTutorialFragment2(tutorialId))
         }
