@@ -291,8 +291,8 @@ class DatabaseHelper( val context: Context): SQLiteOpenHelper(context,
         if (productId != 0 ){
             query += " where productId = $productId"
             query += when(type){
-                TutorialType.VIDEO -> " and isVideo=true"
-                TutorialType.READABLE -> " and isVideo=false"
+                TutorialType.VIDEO -> " and isVideo=1"
+                TutorialType.READABLE -> " and isVideo=0"
             }
         }
 
