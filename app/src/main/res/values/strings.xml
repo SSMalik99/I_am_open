@@ -28,6 +28,9 @@
    Duis aute irure dolor in reprehenderit in voluptate velit esse \n   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat \n   cupidatat non proident, sunt in culpa qui officia deserunt mollit \n   anim id est laborum.
 </string>
     <string name="emptyLikedProducts">Your liked products will appear here.</string>
+    <string name="demo_desc">Demo</string>
+    <string name="company_1_name">Company 1</string>
+    <string name="like_button_desc">Like Product</string>
 
 
 </resources>

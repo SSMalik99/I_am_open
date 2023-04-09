@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -21,7 +22,12 @@ class CompanyImageListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        myContext?.let { Glide.with(it).load(companyList[position].image).into(holder.companyImageView) }
+        myContext?.let {
+            Glide.with(it).load(companyList[position].image).into(holder.companyImageView)
+            holder.companyTitle.text = companyList[position].name
+        }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -30,5 +36,6 @@ class CompanyImageListAdapter(
 
     class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
         val companyImageView: ImageView = view.findViewById(R.id.companyImage)
+        val companyTitle: TextView = view.findViewById<TextView>(R.id.companyName)
     }
 }

@@ -1,28 +1,17 @@
 package com.example.i_am_open
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.i_am_open.adapters.TutorialAdapter
-import com.google.android.material.button.MaterialButton
-import kotlin.math.log
-import kotlin.properties.Delegates
 
 
 class ProductDetailFragment : Fragment() {
@@ -50,6 +39,8 @@ class ProductDetailFragment : Fragment() {
 
         view.findViewById<TextView>(R.id.productName).text = product.name
         view.findViewById<TextView>(R.id.productDescription).text = product.description
+        view.findViewById<TextView>(R.id.upVote).text = product.upVote.toString()
+        view.findViewById<TextView>(R.id.downVote).text = product.downVote.toString()
 
         val likeButton = view.findViewById<ImageButton>(R.id.btn_like)
 

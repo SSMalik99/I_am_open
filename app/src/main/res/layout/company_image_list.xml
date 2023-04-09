@@ -8,16 +8,35 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:background="?android:attr/selectableItemBackground">
 
-        <ImageView
-            android:id="@+id/companyImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/companyImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="@string/demo_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/companyName"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:paddingStart="8dp"
+                android:text="@string/company_1_name"
+                android:textColor="#A1887F"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry,TextSizeCheck" />
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
